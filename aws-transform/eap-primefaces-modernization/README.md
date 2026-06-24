@@ -20,20 +20,13 @@ Purpose: estimate work, risk, time, and AWS Transform cost before changing appli
 Publish:
 
 ```bash
-atx custom def publish \
-  --transformation-name eap-primefaces-modernization-assessment \
-  --source-directory aws-transform/eap-primefaces-modernization/assessment \
-  --description "Assess EAP 7.3 and PrimeFaces 6.2 modernization effort, cost, time, and risk"
+make assessment-publish
 ```
 
 Execute with an assessment budget cap:
 
 ```bash
-atx custom def exec \
-  --code-repository-path . \
-  --transformation-name eap-primefaces-modernization-assessment \
-  --configuration aws-transform/eap-primefaces-modernization/assessment/config.yaml \
-  --limit 30
+make assessment-run
 ```
 
 Expected output:
@@ -49,20 +42,20 @@ Purpose: perform the modernization after reviewing the assessment.
 Publish:
 
 ```bash
-atx custom def publish \
-  --transformation-name eap-primefaces-modernization-migration \
-  --source-directory aws-transform/eap-primefaces-modernization/migration \
-  --description "Modernize EAP 7.3 Java EE PrimeFaces app to EAP 8.1 Jakarta EE and PrimeFaces 15"
+make migration-publish
 ```
 
 Execute with a migration budget cap:
 
 ```bash
-atx custom def exec \
-  --code-repository-path . \
-  --transformation-name eap-primefaces-modernization-migration \
-  --configuration aws-transform/eap-primefaces-modernization/migration/config.yaml \
-  --limit 180
+make migration-run
+```
+
+Override budget caps when needed:
+
+```bash
+make assessment-run ASSESSMENT_LIMIT=45
+make migration-run MIGRATION_LIMIT=240
 ```
 
 ## Cost Control

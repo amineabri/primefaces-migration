@@ -78,6 +78,18 @@ The AWS Transform custom workflow is split into two phases:
 
 Start with the assessment phase to estimate time, cost, and risk before running the migration phase. See [aws-transform/eap-primefaces-modernization/README.md](aws-transform/eap-primefaces-modernization/README.md).
 
+Common commands are wrapped in the root `Makefile`:
+
+```bash
+make help
+make assessment-publish
+make assessment-run
+make assessment-validate
+make migration-publish
+make migration-run
+make migration-validate
+```
+
 ## Project Structure
 
 ```text
