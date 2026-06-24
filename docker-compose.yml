@@ -1,0 +1,13 @@
+services:
+  primefaces-homeoffice:
+    platform: linux/amd64
+    build:
+      context: .
+      platforms:
+        - linux/amd64
+      args:
+        EAP_IMAGE: registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7:7.3.10-2
+        EAP_PLATFORM: linux/amd64
+    image: primefaces-homeoffice:eap-7.3.10
+    ports:
+      - "8080:8080"

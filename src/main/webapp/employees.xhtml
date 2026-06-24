@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/main.xhtml">
+
+    <ui:define name="title">Employees - PrimeFaces Home Office Sample</ui:define>
+
+    <ui:define name="content">
+        <section class="page-heading">
+            <h1>Employees</h1>
+            <p>Static sample employee data with PrimeFaces DataTable sorting and filtering.</p>
+        </section>
+
+        <p:panel header="Employee Directory" styleClass="content-panel">
+            <p:dataTable value="#{employeeBean.employees}"
+                         var="employee"
+                         paginator="true"
+                         rows="5"
+                         emptyMessage="No employees found"
+                         styleClass="data-table">
+                <p:column headerText="Employee ID" sortBy="#{employee.employeeId}" filterBy="#{employee.employeeId}" filterMatchMode="contains">
+                    #{employee.employeeId}
+                </p:column>
+                <p:column headerText="Name" sortBy="#{employee.name}" filterBy="#{employee.name}" filterMatchMode="contains">
+                    #{employee.name}
+                </p:column>
+                <p:column headerText="Department" sortBy="#{employee.department}" filterBy="#{employee.department}" filterMatchMode="contains">
+                    #{employee.department}
+                </p:column>
+                <p:column headerText="Location" sortBy="#{employee.location}" filterBy="#{employee.location}" filterMatchMode="contains">
+                    #{employee.location}
+                </p:column>
+                <p:column headerText="Status" sortBy="#{employee.status}" filterBy="#{employee.status}" filterMatchMode="contains">
+                    <span class="status-pill">#{employee.status}</span>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </ui:define>
+</ui:composition>

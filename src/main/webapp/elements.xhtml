@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/main.xhtml">
+
+    <ui:define name="title">Elements - PrimeFaces Home Office Sample</ui:define>
+
+    <ui:define name="content">
+        <section class="page-heading">
+            <h1>Elements</h1>
+            <p>PrimeFaces 6.2.30 components grouped by common enterprise interface type.</p>
+        </section>
+
+        <h:form id="elementsForm" enctype="multipart/form-data">
+            <p:growl id="growl" showDetail="true">
+                <p:autoUpdate/>
+            </p:growl>
+
+            <p:messages id="messages" showDetail="true" closable="true"/>
+
+            <p:ajaxStatus styleClass="ajax-status">
+                <f:facet name="start">
+                    <span>Working</span>
+                </f:facet>
+                <f:facet name="complete">
+                    <span>Ready</span>
+                </f:facet>
+            </p:ajaxStatus>
+
+            <p:defaultCommand target="saveButton"/>
+
+            <div class="elements-grid">
+                <p:panel id="formPanel" header="Form Controls" styleClass="content-panel">
+                    <p:panelGrid columns="2" layout="grid" styleClass="panel-grid form-grid">
+                        <p:outputLabel for="serviceName" value="Service name"/>
+                        <p:inputText id="serviceName" value="#{elementsBean.serviceName}" required="true" label="Service name"/>
+                        <p:message for="serviceName" showDetail="true"/>
+                        <p:outputPanel/>
+
+                        <p:outputLabel for="department" value="Department"/>
+                        <p:selectOneMenu id="department" value="#{elementsBean.department}">
+                            <f:selectItems value="#{elementsBean.departments}"/>
+                            <p:ajax update="selectionSummary" listener="#{elementsBean.saveDemo}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="urgent" value="Urgent case"/>
+                        <p:selectBooleanCheckbox id="urgent" value="#{elementsBean.urgent}">
+                            <p:ajax update="selectionSummary"/>
+                        </p:selectBooleanCheckbox>
+
+                        <p:outputLabel for="reviewDate" value="Review date"/>
+                        <p:calendar id="reviewDate" value="#{elementsBean.reviewDate}" pattern="dd/MM/yyyy" showOn="button">
+                            <p:ajax event="dateSelect" update="selectionSummary"/>
+                        </p:calendar>
+
+                        <p:outputLabel for="priority" value="Priority"/>
+                        <p:selectOneRadio id="priority" value="#{elementsBean.priority}">
+                            <f:selectItem itemLabel="Low" itemValue="Low"/>
+                            <f:selectItem itemLabel="Medium" itemValue="Medium"/>
+                            <f:selectItem itemLabel="High" itemValue="High"/>
+                            <p:ajax update="selectionSummary"/>
+                        </p:selectOneRadio>
+
+                        <p:outputLabel for="region" value="Regions"/>
+                        <p:selectManyMenu id="region" value="#{elementsBean.selectedDepartments}" showCheckbox="true">
+                            <f:selectItems value="#{elementsBean.departments}"/>
+                            <p:ajax update="selectionSummary"/>
+                        </p:selectManyMenu>
+
+                        <p:outputLabel for="teamSearch" value="Autocomplete"/>
+                        <p:autoComplete id="teamSearch"
+                                        value="#{elementsBean.autocompleteValue}"
+                                        completeMethod="#{elementsBean.completeDepartment}"
+                                        forceSelection="true">
+                            <p:ajax event="itemSelect" update="selectionSummary"/>
+                        </p:autoComplete>
+
+                        <p:outputLabel for="notes" value="Notes"/>
+                        <p:inputTextarea id="notes" value="#{elementsBean.notes}" rows="4" autoResize="false"/>
+                    </p:panelGrid>
+
+                    <p:outputPanel id="selectionSummary" styleClass="selection-summary">
+                        <strong>Current selection:</strong>
+                        #{elementsBean.department},
+                        #{elementsBean.priority},
+                        urgent #{elementsBean.urgent ? 'yes' : 'no'}
+                    </p:outputPanel>
+
+                    <div class="action-row">
+                        <p:commandButton id="saveButton"
+                                         value="Save and continue"
+                                         actionListener="#{elementsBean.saveDemo}"
+                                         update="messages selectionSummary growl"/>
+                        <p:commandButton id="resetButton"
+                                         value="Reset"
+                                         process="@this"
+                                         update="formPanel messages growl"
+                                         actionListener="#{elementsBean.resetDemo}"
+                                         styleClass="secondary-button">
+                            <p:resetInput target="formPanel"/>
+                        </p:commandButton>
+                    </div>
+                </p:panel>
+
+                <p:panel header="Navigation And Menu" styleClass="content-panel">
+                    <p:menu styleClass="side-menu">
+                        <p:submenu label="Sections">
+                            <p:menuitem value="Home" outcome="/home" icon="ui-icon-home"/>
+                            <p:menuitem value="Employees" outcome="/employees" icon="ui-icon-person"/>
+                        </p:submenu>
+                        <p:submenu label="Actions">
+                            <p:menuitem value="Refresh summary" update="selectionSummary messages" icon="ui-icon-refresh"/>
+                            <p:menuitem value="Open dialog" onclick="PF('elementDialog').show();return false;" icon="ui-icon-newwin"/>
+                        </p:submenu>
+                    </p:menu>
+
+                    <div class="link-list">
+                        <p:link value="Reports page" outcome="/reports"/>
+                        <p:button value="GOV.UK" href="https://www.gov.uk/" target="_blank" styleClass="secondary-button"/>
+                        <p:commandLink value="Run command link"
+                                       actionListener="#{elementsBean.linkAction}"
+                                       update="messages growl"/>
+                    </div>
+
+                    <p:commandButton id="confirmButton"
+                                     value="Confirm action"
+                                     actionListener="#{elementsBean.confirmedAction}"
+                                     update="messages growl"
+                                     styleClass="warning-button">
+                        <p:confirm header="Confirm action"
+                                   message="Confirm this sample operation?"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </p:panel>
+            </div>
+
+            <p:panel header="Data Components" styleClass="content-panel form-preview">
+                <p:dataTable id="recordsTable"
+                             value="#{elementsBean.records}"
+                             var="record"
+                             styleClass="data-table"
+                             paginator="true"
+                             rows="4">
+                    <p:column style="width:42px">
+                        <p:rowToggler/>
+                    </p:column>
+                    <p:column headerText="Reference" sortBy="#{record.reference}" filterBy="#{record.reference}" filterMatchMode="contains">
+                        #{record.reference}
+                    </p:column>
+                    <p:column headerText="Service" sortBy="#{record.service}" filterBy="#{record.service}" filterMatchMode="contains">
+                        #{record.service}
+                    </p:column>
+                    <p:column headerText="Owner" sortBy="#{record.owner}" filterBy="#{record.owner}" filterMatchMode="contains">
+                        #{record.owner}
+                    </p:column>
+                    <p:column headerText="Status" sortBy="#{record.status}">
+                        <span class="status-pill">#{record.status}</span>
+                    </p:column>
+                    <p:rowExpansion>
+                        <p:outputPanel styleClass="expanded-row">
+                            #{record.detail}
+                        </p:outputPanel>
+                    </p:rowExpansion>
+                </p:dataTable>
+
+                <p:dataTable id="exportTable"
+                             value="#{elementsBean.records}"
+                             var="record"
+                             styleClass="hidden-export-table">
+                    <p:column headerText="Reference">#{record.reference}</p:column>
+                    <p:column headerText="Service">#{record.service}</p:column>
+                    <p:column headerText="Owner">#{record.owner}</p:column>
+                    <p:column headerText="Status">#{record.status}</p:column>
+                </p:dataTable>
+
+                <div class="action-row">
+                    <p:commandButton value="Export CSV" ajax="false" styleClass="secondary-button">
+                        <p:dataExporter type="csv" target="exportTable" fileName="primefaces-elements"/>
+                    </p:commandButton>
+                </div>
+            </p:panel>
+
+            <div class="elements-grid form-preview">
+                <p:panel id="richTextPanel" header="Feedback And Content" styleClass="content-panel">
+                    <p:outputLabel for="editor" value="Rich text note"/>
+                    <p:textEditor id="editor"
+                                  value="#{elementsBean.editorText}"
+                                  height="150"
+                                  secure="false"
+                                  placeholder="Enter a short service note"/>
+
+                    <p:outputPanel id="autoPanel" styleClass="selection-summary">
+                        <p:autoUpdate/>
+                        Ajax refresh count: #{elementsBean.pollCount}
+                    </p:outputPanel>
+
+                    <h3>Repeated departments</h3>
+                    <p:repeat value="#{elementsBean.departments}" var="departmentName">
+                        <span class="tag">#{departmentName}</span>
+                    </p:repeat>
+                </p:panel>
+
+                <p:panel header="Upload And Progress" styleClass="content-panel">
+                    <p:outputPanel id="uploadStatus" styleClass="selection-summary">
+                        #{elementsBean.uploadStatus}
+                    </p:outputPanel>
+
+                    <p:fileUpload id="fileUpload"
+                                  mode="advanced"
+                                  dragDropSupport="false"
+                                  auto="true"
+                                  fileUploadListener="#{elementsBean.handleUpload}"
+                                  update="uploadStatus messages growl"
+                                  label="Choose file"
+                                  allowTypes="/(\.|\/)(txt|csv|pdf)$/"
+                                  sizeLimit="1048576"/>
+
+                    <p:outputPanel id="progressPanel" styleClass="progress-block">
+                        <p:progressBar value="#{elementsBean.progress}" labelTemplate="{value}%"/>
+                    </p:outputPanel>
+
+                    <p:poll interval="8"
+                            listener="#{elementsBean.pollProgress}"
+                            update="progressPanel autoPanel"
+                            global="false"/>
+                </p:panel>
+            </div>
+
+            <p:tooltip for="serviceName" value="Enter a short internal service name."/>
+
+            <p:dialog header="Sample Dialog"
+                      widgetVar="elementDialog"
+                      modal="true"
+                      resizable="false"
+                      width="420">
+                <p:outputPanel>
+                    This dialog demonstrates a PrimeFaces dialog using the shared GOV.UK-style layout.
+                </p:outputPanel>
+                <div class="action-row">
+                    <p:commandButton value="Close" type="button" onclick="PF('elementDialog').hide();" styleClass="secondary-button"/>
+                </div>
+            </p:dialog>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes"/>
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no secondary-button"/>
+            </p:confirmDialog>
+        </h:form>
+    </ui:define>
+</ui:composition>

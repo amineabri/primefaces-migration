@@ -1,0 +1,7 @@
+[versions]
+javaee = "8.0"
+primefaces = "6.2.30"
+
+[libraries]
+javaee-api = { module = "javax:javaee-api", version.ref = "javaee" }
+primefaces = { module = "org.primefaces:primefaces", version.ref = "primefaces" }

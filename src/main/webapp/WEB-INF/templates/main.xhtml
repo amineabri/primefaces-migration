@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title><ui:insert name="title">PrimeFaces Home Office Sample</ui:insert></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <h:outputStylesheet library="css" name="app.css"/>
+</h:head>
+
+<h:body>
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="brand-row">
+                <div>
+                    <span class="brand-mark">GOV.UK</span>
+                    <span class="brand-name">Home Office</span>
+                </div>
+                <span class="brand-context">Internal Services</span>
+            </div>
+
+            <h:form id="navigationForm">
+                <p:menubar styleClass="top-navigation">
+                    <p:menuitem value="Home" outcome="/home" icon="ui-icon-home"/>
+                    <p:menuitem value="Dashboard" outcome="/dashboard" icon="ui-icon-signal-diag"/>
+                    <p:menuitem value="Employees" outcome="/employees" icon="ui-icon-person"/>
+                    <p:menuitem value="Reports" outcome="/reports" icon="ui-icon-document"/>
+                    <p:menuitem value="Elements" outcome="/elements" icon="ui-icon-gear"/>
+                </p:menubar>
+            </h:form>
+        </header>
+
+        <main class="content">
+            <ui:insert name="content"/>
+        </main>
+    </div>
+</h:body>
+</html>

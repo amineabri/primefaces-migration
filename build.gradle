@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'com.example.homeoffice'
+version = '1.0.0'
+description = 'Minimal Java EE JSF application for JBoss EAP 7.3.10.GA and PrimeFaces 6.2.30.'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+def localPrimeFacesJar = layout.projectDirectory.file("libs/primefaces-${libs.versions.primefaces.get()}.jar").asFile
+
+dependencies {
+    providedCompile libs.javaee.api
+    if (localPrimeFacesJar.exists()) {
+        implementation files(localPrimeFacesJar)
+    } else {
+        implementation libs.primefaces
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+war {
+    archiveFileName = 'primefaces-homeoffice.war'
+}

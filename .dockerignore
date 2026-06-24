@@ -1,0 +1,3 @@
+*
+!build/libs/primefaces-homeoffice.war
+!Dockerfile

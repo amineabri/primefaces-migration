@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/main.xhtml">
+
+    <ui:define name="title">Dashboard - PrimeFaces Home Office Sample</ui:define>
+
+    <ui:define name="content">
+        <section class="page-heading">
+            <h1>Dashboard</h1>
+            <p>Summary information for a small internal operational queue.</p>
+        </section>
+
+        <div class="summary-grid">
+            <ui:repeat value="#{dashboardBean.summaryItems}" var="item">
+                <p:panel styleClass="summary-card">
+                    <div class="summary-label">#{item.label}</div>
+                    <div class="summary-value">#{item.value}</div>
+                    <div class="summary-note">#{item.note}</div>
+                </p:panel>
+            </ui:repeat>
+        </div>
+
+        <p:panel header="Current Work Queue" styleClass="content-panel">
+            <p:dataTable value="#{dashboardBean.workQueue}" var="queueItem" styleClass="data-table">
+                <p:column headerText="Reference">
+                    #{queueItem.reference}
+                </p:column>
+                <p:column headerText="Team">
+                    #{queueItem.team}
+                </p:column>
+                <p:column headerText="Priority">
+                    #{queueItem.priority}
+                </p:column>
+                <p:column headerText="Status">
+                    <span class="status-pill">#{queueItem.status}</span>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/main.xhtml">
+
+    <ui:define name="title">Reports - PrimeFaces Home Office Sample</ui:define>
+
+    <ui:define name="content">
+        <section class="page-heading">
+            <h1>Reports</h1>
+            <p>Sample report view using supported PrimeFaces panel and table components.</p>
+        </section>
+
+        <div class="two-column">
+            <p:panel header="Report Summary" styleClass="content-panel">
+                <p class="report-note">The following reports represent a static internal reporting queue.</p>
+                <p:panelGrid columns="2" layout="grid" styleClass="panel-grid">
+                    <span>Total reports</span>
+                    <strong>4</strong>
+                    <span>Ready for review</span>
+                    <strong>2</strong>
+                    <span>Draft or in review</span>
+                    <strong>2</strong>
+                </p:panelGrid>
+            </p:panel>
+
+            <p:panel header="Reporting Cycle" styleClass="content-panel">
+                <p:accordionPanel multiple="true">
+                    <p:tab title="Monthly">
+                        <p>Monthly summaries provide a concise view of service activity.</p>
+                    </p:tab>
+                    <p:tab title="Quarterly">
+                        <p>Quarterly reports support governance and planning reviews.</p>
+                    </p:tab>
+                </p:accordionPanel>
+            </p:panel>
+        </div>
+
+        <p:panel header="Available Reports" styleClass="content-panel form-preview">
+            <p:dataTable value="#{reportsBean.reports}" var="report" styleClass="data-table">
+                <p:column headerText="Reference">
+                    #{report.reference}
+                </p:column>
+                <p:column headerText="Title">
+                    #{report.title}
+                </p:column>
+                <p:column headerText="Owner">
+                    #{report.owner}
+                </p:column>
+                <p:column headerText="Status">
+                    <span class="status-pill">#{report.status}</span>
+                </p:column>
+                <p:column headerText="Due Date">
+                    #{report.dueDate}
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </ui:define>
+</ui:composition>
