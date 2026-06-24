@@ -82,12 +82,13 @@ Common commands are wrapped in the root `Makefile`:
 
 ```bash
 make help
-make assessment-publish
-make assessment-run
-make assessment-validate
-make migration-publish
-make migration-run
-make migration-validate
+make assessments-publish
+make assessments-run
+make assessments-validate
+make staged-publish
+make pf8-run
+make pf11-run
+make eap8-pf15-run
 ```
 
 ## Project Structure

@@ -1,0 +1,8 @@
+codeRepositoryPath: .
+transformationName: eap-primefaces-modernization-pf7
+buildCommand: ./gradlew clean build
+additionalPlanContext: |
+  Migrate only PrimeFaces 6.2.30 to 7.0.
+  Do not update JBoss, Java, Jakarta, Docker, descriptors, Facelets namespaces, or javax.* imports.
+  Read aws-transform/eap-primefaces-modernization/reports/01-primefaces-7-assessment.md if present.
+  Preserve all pages and sample behavior.

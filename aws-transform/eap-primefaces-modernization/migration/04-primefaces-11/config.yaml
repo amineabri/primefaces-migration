@@ -1,0 +1,8 @@
+codeRepositoryPath: .
+transformationName: eap-primefaces-modernization-pf11
+buildCommand: ./gradlew clean build
+additionalPlanContext: |
+  Migrate only PrimeFaces 10.0.0 to 11.0.0.
+  Do not update JBoss, Java, Jakarta, Docker, descriptors, Facelets namespaces, or javax.* imports.
+  Read aws-transform/eap-primefaces-modernization/reports/04-primefaces-11-assessment.md if present.
+  Preserve all pages and sample behavior.

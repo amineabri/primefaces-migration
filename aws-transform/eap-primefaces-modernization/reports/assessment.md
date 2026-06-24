@@ -2,211 +2,174 @@
 
 ## Executive Summary
 
-This application is a small, self-contained JSF/PrimeFaces WAR with no database, REST, JPA, authentication, or messaging layers. The migration from JBoss EAP 7.3 / Java EE 8 / Java 8 / PrimeFaces 6.2.30 to JBoss EAP 8.1 / Jakarta EE 10 / Java 21 / PrimeFaces 15.0.16 is straightforward in scope but carries medium risk due to the breadth of PrimeFaces components on the Elements page (37 distinct component types) that require compatibility verification against PrimeFaces 15.
-
-Expected effort: 15–30 AWS Transform agent-minutes plus 1–3 hours of human review and manual QA.
+This application is a small, self-contained JSF/PrimeFaces WAR with 11 Java source files, 6 Facelets pages, and 3 XML descriptors running on JBoss EAP 7.3.10 with Java 8. The migration to EAP 8.1 / Jakarta EE 10 / Java 21 / PrimeFaces 15 is straightforward in scope but involves namespace changes across every source and page file, a PrimeFaces major version jump (6 → 15) that may deprecate or rename components, and a Docker base image swap. Overall risk is **medium** due to PrimeFaces component compatibility uncertainty.
 
 ## Current Inventory
 
-| Category | Count / Value |
-|----------|---------------|
-| Build system | Gradle 8.x WAR project with version catalog |
-| Java source compatibility | Java 8 (source + target) |
+| Category | Detail |
+|---|---|
+| Build system | Gradle 8.x, WAR plugin, version catalog (`gradle/libs.versions.toml`) |
+| Java version | Source/target 1.8 |
 | Java EE API | `javax:javaee-api:8.0` (provided) |
-| PrimeFaces | `org.primefaces:primefaces:6.2.30` |
-| Java source files | 11 (6 model POJOs, 5 CDI view beans) |
-| Facelets XHTML pages | 6 (1 template + 5 pages) |
-| XML descriptors | 3 (web.xml, beans.xml, jboss-web.xml) |
-| CSS files | 1 (app.css) |
-| Docker files | 2 (Dockerfile, docker-compose.yml) |
-| Runtime image | `registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7:7.3.10-2` |
-| Deployment | ROOT.war at context root `/` |
-| Test framework | None |
+| PrimeFaces | `org.primefaces:primefaces:6.2.30` (implementation) |
+| Application server | JBoss EAP 7.3.10.GA (Docker image `registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7:7.3.10-2`) |
+| Java source files | 11 (5 view beans with `javax.*` imports, 6 model POJOs with no EE imports) |
+| Facelets pages | 6 (all use `xmlns.jcp.org` Java EE namespaces) |
+| XML descriptors | 3 (`web.xml` Servlet 4.0, `beans.xml` CDI 1.1, `jboss-web.xml`) |
+| PrimeFaces components | 37+ unique components on `elements.xhtml` |
+| Docker files | `Dockerfile` + `docker-compose.yml` |
+| Tests | None (no test sources) |
+| Context root | `/` (deployed as `ROOT.war`) |
 
 ## Migration Work Breakdown
 
-### 1. Build and Dependencies
+### 1. Build & Dependencies
 
-| Item | Change Required |
-|------|-----------------|
-| `gradle/libs.versions.toml` | Update `javaee` to Jakarta EE 10 artifact (`jakarta.platform:jakarta.jakartaee-api:10.0.0`), update `primefaces` to `15.0.16` with Jakarta classifier |
-| `build.gradle` | Change `sourceCompatibility`/`targetCompatibility` to Java 21, update dependency coordinates from `javax:javaee-api` to `jakarta.platform:jakarta.jakartaee-api`, add Jakarta classifier for PrimeFaces |
-| Local JAR fallback | Verify `libs/` directory handling still works or remove if unused |
+| Change | Files | Complexity |
+|---|---|---|
+| Java source/target 1.8 → 21 | `build.gradle` | Low |
+| `javax:javaee-api:8.0` → `jakarta.platform:jakarta.jakartaee-api:10.0.0` | `gradle/libs.versions.toml`, `build.gradle` | Low |
+| `org.primefaces:primefaces:6.2.30` → `org.primefaces:primefaces:15.0.16:jakarta` (classifier) | `gradle/libs.versions.toml`, `build.gradle` | Low |
+| Remove local JAR fallback logic (if no longer needed) | `build.gradle` | Low |
 
-**Complexity: Low**
+### 2. Java Namespace Migration (`javax.*` → `jakarta.*`)
 
-### 2. Java Source — Namespace Migration
+| Import | Occurrences | Files |
+|---|---|---|
+| `javax.enterprise.context.ApplicationScoped` | 4 | DashboardBean, EmployeeBean, HomeBean, ReportsBean |
+| `javax.enterprise.context.SessionScoped` | 1 | ElementsBean |
+| `javax.inject.Named` | 5 | All 5 view beans |
+| `javax.faces.application.FacesMessage` | 1 | ElementsBean |
+| `javax.faces.context.FacesContext` | 1 | ElementsBean |
 
-| File | javax.* Imports to Migrate |
-|------|----------------------------|
-| DashboardBean.java | `javax.enterprise.context.ApplicationScoped`, `javax.inject.Named` |
-| EmployeeBean.java | `javax.enterprise.context.ApplicationScoped`, `javax.inject.Named` |
-| HomeBean.java | `javax.enterprise.context.ApplicationScoped`, `javax.inject.Named` |
-| ReportsBean.java | `javax.enterprise.context.ApplicationScoped`, `javax.inject.Named` |
-| ElementsBean.java | `javax.enterprise.context.SessionScoped`, `javax.inject.Named`, `javax.faces.application.FacesMessage`, `javax.faces.context.FacesContext` |
-| Model classes (6 files) | No javax.* imports — no changes needed |
-
-**Total Java files requiring changes: 5 of 11**
-**Complexity: Low** — mechanical find-and-replace of `javax.` → `jakarta.` for CDI/Faces packages.
+**Total: 5 files, ~12 import lines to change.**
 
 ### 3. XML Descriptors
 
-| File | Changes |
-|------|---------|
-| `web.xml` | Update namespace from `http://xmlns.jcp.org/xml/ns/javaee` to `https://jakarta.ee/xml/ns/jakartaee`, schema to `web-app_6_0.xsd`, version to `6.0`, rename `javax.faces.*` context-params to `jakarta.faces.*`, rename servlet class to `jakarta.faces.webapp.FacesServlet` |
-| `beans.xml` | Update namespace to `https://jakarta.ee/xml/ns/jakartaee`, schema to `beans_4_0.xsd`, version to `4.0` |
-| `jboss-web.xml` | Verify compatibility with EAP 8.1 schema; likely minimal or no changes needed for context-root declaration |
+| File | Change | Complexity |
+|---|---|---|
+| `web.xml` | Namespace `xmlns.jcp.org/xml/ns/javaee` → `jakarta.ee/xml/ns/jakartaee`, schema version 4.0 → 6.0 | Medium |
+| `beans.xml` | Namespace update, CDI version 1.1 → 4.0 | Medium |
+| `jboss-web.xml` | Verify compatibility with EAP 8.1 (likely unchanged) | Low |
 
-**Complexity: Medium** — schema URIs and parameter names must be precise.
+### 4. Facelets Namespace Migration
 
-### 4. Facelets / XHTML Pages
+| Namespace | Replacement | Files affected |
+|---|---|---|
+| `http://xmlns.jcp.org/jsf/html` | `jakarta.faces.html` | 3 |
+| `http://xmlns.jcp.org/jsf/core` | `jakarta.faces.core` | 2 |
+| `http://xmlns.jcp.org/jsf/facelets` | `jakarta.faces.facelets` | 6 |
 
-| File | Changes |
-|------|---------|
-| main.xhtml (template) | Update `xmlns:h`, `xmlns:ui` from `http://xmlns.jcp.org/jsf/*` to `jakarta.faces.` equivalents |
-| home.xhtml | Same namespace updates |
-| dashboard.xhtml | Same namespace updates |
-| employees.xhtml | Same namespace updates |
-| reports.xhtml | Same namespace updates |
-| elements.xhtml | Same namespace updates + PrimeFaces component compatibility review |
+**Total: 6 XHTML files.**
 
-**Namespace changes:**
-- `http://xmlns.jcp.org/jsf/html` → `jakarta.faces.html`
-- `http://xmlns.jcp.org/jsf/core` → `jakarta.faces.core`
-- `http://xmlns.jcp.org/jsf/facelets` → `jakarta.faces.facelets`
-- `http://primefaces.org/ui` → remains unchanged (PrimeFaces namespace is version-independent)
+### 5. PrimeFaces Component Compatibility (6 → 15)
 
-**Complexity: Low-Medium**
-
-### 5. PrimeFaces 6.2.30 → 15.0.16 Component Compatibility
-
-The `elements.xhtml` page uses 37 distinct PrimeFaces component types. Key migration concerns:
+The `elements.xhtml` page uses 37+ PrimeFaces components. Key risks:
 
 | Component | Risk | Notes |
-|-----------|------|-------|
-| `p:textEditor` | Medium | Underlying Quill.js integration changed significantly between PF 6 and PF 15 |
-| `p:fileUpload` | Medium | API changed: `UploadedFile` moved to different package, `mode="advanced"` behavior updated |
-| `p:dataExporter` | Medium | API and attribute changes in newer versions |
-| `p:calendar` | High | Deprecated in PF 11+; replaced by `p:datePicker`. May still work but is legacy |
-| `p:autoComplete` | Low | Largely backward-compatible |
-| `p:dataTable` (sort/filter/paginate) | Low | Core functionality preserved; some attribute renames possible |
-| `p:poll` | Low | Stable across versions |
-| `p:confirmDialog` + `p:confirm` | Medium | Global confirm mechanism changed in PF 10+ |
-| All other components | Low | Generally backward-compatible |
+|---|---|---|
+| `p:calendar` | High | Deprecated in PF 11+; replaced by `p:datePicker` |
+| `p:textEditor` | Medium | API changes between major versions |
+| `p:fileUpload` | Medium | Servlet API and configuration changes in Jakarta EE 10 |
+| `p:dataExporter` | Medium | API signature changes in PF 12+ |
+| `p:defaultCommand` | Low-Medium | Behavior changes in newer versions |
+| `p:selectManyMenu` | Medium | Deprecated/removed in PF 14; may need `p:selectManyCheckbox` or custom |
+| Other components | Low | Most standard components carry forward |
 
-**ElementsBean.java additionally imports:**
-- `org.primefaces.event.FileUploadEvent` — package path may change in Jakarta classifier
-- `org.primefaces.model.UploadedFile` — renamed to `org.primefaces.model.file.UploadedFile` in PF 8+
+### 6. Docker & Runtime
 
-**Complexity: Medium-High** — requires careful testing of the Elements page.
-
-### 6. Docker
-
-| File | Changes |
-|------|---------|
-| Dockerfile | Change base image from EAP 7.3 OpenJDK 8 to EAP 8.1 OpenJDK 21 image; update deployment path if needed |
-| docker-compose.yml | Update image reference and tag |
-
-**Target image (example):** `registry.redhat.io/jboss-eap-8/eap8-openjdk21-builder-openshift-rhel9` (exact tag depends on Red Hat registry availability)
-
-**Complexity: Low-Medium** — depends on Red Hat registry access and available EAP 8.1 images.
+| Change | Complexity |
+|---|---|
+| Base image → EAP 8.1 on JDK 21 (e.g., `registry.redhat.io/jboss-eap-8/eap8-openjdk21-builder-openshift-rhel9`) | Medium |
+| Platform may change from `linux/amd64` only to multi-arch | Low |
+| Deployment path may change (`/opt/eap/` → `/opt/server/`) | Medium |
+| `docker-compose.yml` image tag and args update | Low |
 
 ### 7. Documentation
 
-| File | Changes |
-|------|---------|
-| README.md | Update version references, build instructions, and technology descriptions |
-
-**Complexity: Low**
+| Change | Complexity |
+|---|---|
+| `README.md` version references and instructions | Low |
 
 ## Estimate
 
-| Metric | Low | Expected | High |
-|--------|-----|----------|------|
-| AWS Transform agent-minutes | 10 | 20 | 35 |
-| Human engineering review (hours) | 0.5 | 1.5 | 3 |
-| Manual QA — functional verification (hours) | 0.5 | 1 | 2 |
-| Calendar duration (days) | 1 | 1 | 2 |
+| Scenario | Phase 2 AWS Transform agent minutes | Human engineering review | Manual QA |
+|---|---:|---:|---:|
+| Low | 45 | 30 min | 30 min |
+| Expected | 90 | 60 min | 60 min |
+| High | 150 | 120 min | 120 min |
 
-### Rationale
-
-- **Build/dependency changes** are mechanical and well-defined (~3–5 agent-minutes).
-- **Java namespace migration** across 5 files is trivial (~2–3 agent-minutes).
-- **XML descriptor updates** require precise schema knowledge (~3–5 agent-minutes).
-- **Facelets namespace updates** across 6 files (~2–3 agent-minutes).
-- **PrimeFaces component compatibility** is the largest uncertainty. The Elements page exercises 37 component types, some with known breaking changes (calendar → datePicker, fileUpload API, confirmDialog). This may require iterative fixes (~5–15 agent-minutes).
-- **Docker image update** depends on available EAP 8.1 images (~2–3 agent-minutes).
-- **Human review** is needed to visually verify PrimeFaces component rendering and behavior.
+**Rationale:**
+- The codebase is small (11 Java files, 6 pages, 3 descriptors).
+- Namespace migration is mechanical and fast.
+- PrimeFaces 6 → 15 component verification is the main variable: deprecated components (`p:calendar`, `p:selectManyMenu`) may require iterative fixes.
+- Docker image availability and deployment path verification add minor uncertainty.
 
 ## Cost
 
-**Formula:**
+| Scenario | Estimated Phase 2 agent minutes | Estimated AWS Transform cost |
+|---|---:|---:|
+| Low | 45 | $1.58 |
+| Expected | 90 | $3.15 |
+| High | 150 | $5.25 |
 
-```
-Estimated AWS Transform cost = agent-minutes × current AWS Transform agent-minute price
-```
+**Formula:** Estimated AWS Transform cost = Estimated Phase 2 migration agent minutes × USD 0.035 per agent minute.
 
-Using the expected estimate of 20 agent-minutes:
+**Pricing reference:** USD 0.035 per agent minute as of 2026-06-24, per https://aws.amazon.com/transform/pricing/.
 
-```
-Estimated cost = 20 × [current agent-minute price from AWS pricing]
-```
+> **Note:** The current price must be verified at execution time from the AWS pricing page, as pricing can change. Local builds, local file reads, and user idle time are not charged as agent minutes.
 
-> **Note:** The current AWS Transform custom transformation agent-minute price must be checked at execution time from the [AWS Pricing Calculator](https://calculator.aws) or the AWS Transform pricing page, as pricing is subject to change.
+### Human Engineering Review Cost Estimate
+
+| Scenario | Review + QA hours | Estimated cost (at $150/hr blended rate) |
+|---|---:|---:|
+| Low | 1.0 | $150 |
+| Expected | 2.0 | $300 |
+| High | 4.0 | $600 |
 
 ## Risks And Blockers
 
 | Risk | Severity | Mitigation |
-|------|----------|------------|
-| `p:calendar` deprecated in PF 11+ | Medium | Replace with `p:datePicker`; requires attribute mapping and potential bean changes |
-| `org.primefaces.model.UploadedFile` package relocation | Medium | Update import to `org.primefaces.model.file.UploadedFile` |
-| `p:confirmDialog` global confirm API changes | Medium | Update to PF 10+ global confirm pattern |
-| `p:textEditor` Quill integration changes | Medium | Verify editor still renders; may need attribute updates |
-| Red Hat EAP 8.1 container image availability | Low-Medium | Verify image exists and is accessible; may need registry authentication |
-| No test suite exists | Medium | All verification must be manual; no automated regression safety net |
-| PrimeFaces 15 Jakarta classifier artifact availability | Low | Verify Maven Central has `org.primefaces:primefaces:15.0.16:jakarta` |
-| `p:dataExporter` attribute changes | Low | Verify CSV export still functions |
+|---|---|---|
+| PrimeFaces `p:calendar` removed in PF 11+ | High | Replace with `p:datePicker`; verify attributes map correctly |
+| PrimeFaces `p:selectManyMenu` deprecated/removed in PF 14+ | Medium | Replace with equivalent component or verify PF 15 status |
+| `p:fileUpload` servlet changes under Jakarta EE 10 | Medium | Test upload functionality; may need config in `web.xml` |
+| EAP 8.1 Docker image availability and registry access | Medium | Verify Red Hat registry credentials and image existence |
+| EAP 8.1 deployment directory structure differs from 7.3 | Medium | Verify correct WAR deployment path |
+| No existing tests to catch regressions | High | Manual QA required for all 5 pages post-migration |
+| PrimeFaces 15 may have breaking JS/CSS changes | Low | Visual inspection of elements.xhtml page |
 
 ### Blockers
 
-- **None identified** — all risks have known mitigations. The migration can proceed to Phase 2.
+1. **Red Hat registry access** — EAP 8.1 images require an active Red Hat subscription. Verify credentials before Phase 2.
+2. **PrimeFaces 15.0.16 Jakarta classifier availability** — Confirm the artifact `org.primefaces:primefaces:15.0.16:jakarta` is published on Maven Central.
 
 ## Migration Phase Inputs
 
-### Assumptions for Phase 2
+The following assumptions and instructions should guide Phase 2 execution:
 
-1. Target PrimeFaces artifact: `org.primefaces:primefaces:15.0.16:jakarta`
-2. Target Jakarta EE API: `jakarta.platform:jakarta.jakartaee-api:10.0.0` (provided scope)
-3. Target Java version: 21 (source and target compatibility)
-4. Target EAP image: Red Hat EAP 8.1 with OpenJDK 21 (exact registry path TBD at migration time)
-5. `p:calendar` should be replaced with `p:datePicker`
-6. `org.primefaces.model.UploadedFile` → `org.primefaces.model.file.UploadedFile`
-7. `org.primefaces.event.FileUploadEvent` — verify package path in PF 15 Jakarta
-8. All `javax.*` imports in Java → corresponding `jakarta.*` equivalents
-9. All `http://xmlns.jcp.org/jsf/*` namespaces → `jakarta.faces.*` equivalents
-10. web.xml and beans.xml schemas → Jakarta EE 10 equivalents
-11. Context root `/` preserved via jboss-web.xml
-12. WAR file name `primefaces-homeoffice.war` deployed as `ROOT.war` in container
-
-### Recommended Migration Order
-
-1. Build system (Gradle + version catalog)
-2. Java source namespace migration
-3. XML descriptors
-4. Facelets namespace migration
-5. PrimeFaces component compatibility fixes
-6. Docker image update
-7. Documentation update
-8. Build verification + manual smoke test
+1. **Java version:** Upgrade source/target compatibility to Java 21.
+2. **Jakarta EE API:** Replace `javax:javaee-api:8.0` with `jakarta.platform:jakarta.jakartaee-api:10.0.0`.
+3. **PrimeFaces:** Replace with `org.primefaces:primefaces:15.0.16` using the `jakarta` classifier.
+4. **Java sources:** Mechanically replace all `javax.enterprise.*` → `jakarta.enterprise.*`, `javax.inject.*` → `jakarta.inject.*`, `javax.faces.*` → `jakarta.faces.*`.
+5. **Facelets:** Replace `xmlns.jcp.org/jsf/*` namespaces with Jakarta Faces equivalents.
+6. **Descriptors:** Update `web.xml` to Servlet 6.0 / Jakarta EE 10 schema; update `beans.xml` to CDI 4.0 schema.
+7. **PrimeFaces components:** Replace `p:calendar` with `p:datePicker`; verify `p:selectManyMenu` status; test all 37 components.
+8. **Docker:** Switch to EAP 8.1 JDK 21 image; update deployment path if needed.
+9. **Context root:** Maintain `/` via `jboss-web.xml` or EAP 8.1 equivalent mechanism.
+10. **WAR name:** Keep `primefaces-homeoffice.war` deployed as `ROOT.war`.
+11. **No authentication/database/JPA/REST** — no additional migration needed for those layers.
 
 ## Go / No-Go
 
-**Recommendation: GO**
+### Recommendation: **GO**
 
-**Prerequisites before starting Phase 2:**
-- [ ] Confirm access to Red Hat container registry for EAP 8.1 images
-- [ ] Confirm PrimeFaces 15.0.16 Jakarta classifier is available on Maven Central
-- [ ] Acknowledge that no automated test suite exists; manual QA is required
-- [ ] Accept medium risk on PrimeFaces Elements page — some components may need rework
+This is a small, well-scoped application with no external integrations, no database, and no tests to break. The migration is primarily mechanical namespace changes plus PrimeFaces component updates.
 
-**Overall risk rating: MEDIUM** — the application is small and well-structured, but the breadth of PrimeFaces components and lack of automated tests increase verification effort.
+### Prerequisites before Phase 2:
+
+- [ ] Confirm Red Hat registry credentials for EAP 8.1 image pull.
+- [ ] Confirm `org.primefaces:primefaces:15.0.16:jakarta` is available on Maven Central.
+- [ ] Confirm target EAP 8.1 Docker image name and tag.
+- [ ] Decide on Gradle version (current wrapper should support Java 21; verify).
+- [ ] Accept that manual QA of all 5 pages is required post-migration (no automated tests exist).

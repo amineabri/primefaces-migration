@@ -6,10 +6,24 @@ Use this skill when assessing or modernizing this repository from JBoss EAP 7.3 
 
 Run modernization in two phases:
 
-1. Assessment phase: inspect the repository, estimate time/cost/risk, and write `aws-transform/eap-primefaces-modernization/reports/assessment.md`.
-2. Migration phase: read the assessment report, then modernize the app according to the target decisions below.
+1. Assessment phase: inspect the repository and estimate time/cost/risk separately for each version move.
+2. Migration phase: run one version move at a time, with QA checkpoints between stages.
 
 During assessment, do not modify application code, build files, Docker files, descriptors, JSF pages, or README files. The only allowed assessment output is the report.
+
+Per-stage assessment reports:
+
+- `aws-transform/eap-primefaces-modernization/reports/01-primefaces-8-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/02-primefaces-11-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/03-eap8-primefaces15-assessment.md`
+
+Per-stage migration order:
+
+1. PrimeFaces 6.2.30 to PrimeFaces 8.0 on current Java EE / EAP 7.3.
+2. PrimeFaces 8.0 to PrimeFaces 11.0.0 on current Java EE / EAP 7.3.
+3. PrimeFaces 11.0.0 to PrimeFaces 15.0.16 Jakarta plus EAP 8.1 / Jakarta EE 10 / Java 21.
+
+Do not continue to the next migration stage until the testing team has completed the QA checkpoint for the previous stage.
 
 ## Target Decisions
 

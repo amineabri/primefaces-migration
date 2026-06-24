@@ -8,25 +8,23 @@ Run Phase 1 first and review:
 aws-transform/eap-primefaces-modernization/reports/assessment.md
 ```
 
-## Publish
+## Recommended Staged Migration
 
 ```bash
-atx custom def publish \
-  --transformation-name eap-primefaces-modernization-migration \
-  --source-directory aws-transform/eap-primefaces-modernization/migration/definition \
-  --description "Modernize EAP 7.3 Java EE PrimeFaces app to EAP 8.1 Jakarta EE and PrimeFaces 15"
+make staged-publish
 ```
 
-## Execute
-
-Use `--limit` to cap migration agent minutes.
+Then run and test one version move at a time:
 
 ```bash
-atx custom def exec \
-  --code-repository-path . \
-  --transformation-name eap-primefaces-modernization-migration \
-  --configuration "file://$(pwd)/aws-transform/eap-primefaces-modernization/migration/config.yaml" \
-  --limit 180
+make pf8-run
+# QA checkpoint: PrimeFaces 8
+
+make pf11-run
+# QA checkpoint: PrimeFaces 11
+
+make eap8-pf15-run
+# QA checkpoint: JBoss EAP 8.1, Jakarta EE, PrimeFaces 15
 ```
 
 ## Validate

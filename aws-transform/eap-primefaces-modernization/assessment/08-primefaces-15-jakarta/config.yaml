@@ -1,0 +1,8 @@
+codeRepositoryPath: .
+transformationName: eap-primefaces-assessment-pf15
+buildCommand: ./gradlew clean build
+additionalPlanContext: |
+  Assessment only for PrimeFaces 14.0.0 to PrimeFaces 15.0.16 Jakarta plus the required JBoss EAP 8.1, Jakarta EE 10, and Java 21 cutover.
+  Do not modify application files.
+  Produce only: aws-transform/eap-primefaces-modernization/reports/08-primefaces-15-jakarta-assessment.md
+  Estimate this one version/runtime move with low / expected / high AWS Transform agent minutes, AWS Transform cost at USD 0.035 per agent minute, human effort, QA effort, calendar duration, risks, blockers, and QA focus.

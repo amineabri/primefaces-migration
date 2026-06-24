@@ -17,45 +17,63 @@ to:
 
 Purpose: estimate work, risk, time, and AWS Transform cost before changing application code.
 
-Publish:
+Recommended staged assessment:
 
 ```bash
-make assessment-publish
+make assessments-publish
+make assessments-run
+make assessments-validate
 ```
 
-Execute with an assessment budget cap:
-
-```bash
-make assessment-run
-```
-
-Expected output:
+This produces one estimate per migration stage:
 
 ```text
-aws-transform/eap-primefaces-modernization/reports/assessment.md
+aws-transform/eap-primefaces-modernization/reports/01-primefaces-8-assessment.md
+aws-transform/eap-primefaces-modernization/reports/02-primefaces-11-assessment.md
+aws-transform/eap-primefaces-modernization/reports/03-eap8-primefaces15-assessment.md
 ```
+
+You can also run a single stage estimate:
+
+```bash
+make pf8-assessment-publish
+make pf8-assessment-run
+make pf8-assessment-validate
+```
+
+Each assessment report includes low / expected / high estimates for agent minutes, AWS Transform cost, human effort, QA effort, and calendar duration. As of 2026-06-24, AWS Transform custom pricing is USD 0.035 per agent minute; check current AWS pricing before relying on the estimate.
 
 ## Phase 2: Migration
 
-Purpose: perform the modernization after reviewing the assessment.
+Purpose: perform one version move at a time after reviewing the matching estimate.
 
-Publish:
+Recommended staged migration:
 
 ```bash
-make migration-publish
+make staged-publish
+make pf8-run
+# QA tests PrimeFaces 8
+make pf11-run
+# QA tests PrimeFaces 11
+make eap8-pf15-run
+# QA tests EAP 8.1 and PrimeFaces 15 Jakarta
 ```
 
-Execute with a migration budget cap:
+Stage mapping:
 
-```bash
-make migration-run
+| Assessment report | Migration command | QA checkpoint |
+| --- | --- | --- |
+| `01-primefaces-8-assessment.md` | `make pf8-run` | PrimeFaces 8 on current EAP 7.3 |
+| `02-primefaces-11-assessment.md` | `make pf11-run` | PrimeFaces 11 on current EAP 7.3 |
+| `03-eap8-primefaces15-assessment.md` | `make eap8-pf15-run` | EAP 8.1, Jakarta EE, PrimeFaces 15 |
 ```
 
 Override budget caps when needed:
 
 ```bash
-make assessment-run ASSESSMENT_LIMIT=45
-make migration-run MIGRATION_LIMIT=240
+make pf8-assessment-run PF8_ASSESSMENT_LIMIT=45
+make pf8-run PF8_LIMIT=90
+make eap8-pf15-run EAP8_PF15_LIMIT=240
 ```
 
 ## Cost Control
