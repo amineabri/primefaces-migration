@@ -15,11 +15,9 @@
         </section>
 
         <h:form id="elementsForm" enctype="multipart/form-data">
-            <p:growl id="growl" showDetail="true">
+            <p:messages id="messages" showDetail="true" closable="true">
                 <p:autoUpdate/>
-            </p:growl>
-
-            <p:messages id="messages" showDetail="true" closable="true"/>
+            </p:messages>
 
             <p:ajaxStatus styleClass="ajax-status">
                 <f:facet name="start">
@@ -93,11 +91,11 @@
                         <p:commandButton id="saveButton"
                                          value="Save and continue"
                                          actionListener="#{elementsBean.saveDemo}"
-                                         update="messages selectionSummary growl"/>
+                                         update="messages selectionSummary"/>
                         <p:commandButton id="resetButton"
                                          value="Reset"
                                          process="@this"
-                                         update="formPanel messages growl"
+                                         update="formPanel messages"
                                          actionListener="#{elementsBean.resetDemo}"
                                          styleClass="secondary-button">
                             <p:resetInput target="formPanel"/>
@@ -122,13 +120,13 @@
                         <p:button value="GOV.UK" href="https://www.gov.uk/" target="_blank" styleClass="secondary-button"/>
                         <p:commandLink value="Run command link"
                                        actionListener="#{elementsBean.linkAction}"
-                                       update="messages growl"/>
+                                       update="messages"/>
                     </div>
 
                     <p:commandButton id="confirmButton"
                                      value="Confirm action"
                                      actionListener="#{elementsBean.confirmedAction}"
-                                     update="messages growl"
+                                     update="messages"
                                      styleClass="warning-button">
                         <p:confirm header="Confirm action"
                                    message="Confirm this sample operation?"
@@ -212,7 +210,7 @@
                                   dragDropSupport="false"
                                   auto="true"
                                   listener="#{elementsBean.handleUpload}"
-                                  update="uploadStatus messages growl"
+                                  update="uploadStatus messages"
                                   label="Choose file"
                                   allowTypes="/(\.|\/)(txt|csv|pdf)$/"
                                   sizeLimit="1048576"/>
