@@ -1,19 +1,33 @@
-# PrimeFaces 6.2.30 to 7.0 Assessment
+# PrimeFaces 6.2.30 → 7.0 Assessment
 
 ## Scope
 
-Upgrade PrimeFaces from 6.2.30 to 7.0 in the `primefaces-homeoffice` WAR project. This assessment covers only the PrimeFaces library version change. JBoss EAP, Jakarta/Java EE namespace, Java version, Docker, and descriptor migrations are out of scope.
+Upgrade PrimeFaces dependency from **6.2.30** to **7.0** only. No changes to JBoss EAP, Java version, Jakarta namespace, Docker, or deployment descriptors.
 
 ### Project Profile
 
 | Metric | Value |
 |--------|-------|
-| XHTML views | 6 |
-| Java files importing PrimeFaces | 1 (`ElementsBean.java`) |
-| PrimeFaces components in use | 35+ distinct tags |
-| CSS override rules targeting PF classes | ~120 selectors |
-| Configuration references | 1 (`web.xml`: `primefaces.UPLOADER`) |
-| Build system | Gradle (version catalog `libs.versions.toml`) |
+| XHTML pages | 6 |
+| Distinct PrimeFaces components used | ~40+ |
+| Java files importing org.primefaces | 1 (`ElementsBean.java`) |
+| CSS files targeting PF widget classes | 1 (`app.css`) |
+| PrimeFaces config in web.xml | 1 (`primefaces.UPLOADER=native`) |
+| Build system | Gradle (version catalog) |
+
+---
+
+## Breaking Changes (6.2 → 7.0)
+
+| Area | Impact | Files Affected |
+|------|--------|----------------|
+| **Theme default change** (Aristo → Nova) | CSS overrides in `app.css` may need adjustment for new Nova theme class structure | `app.css` |
+| **Deprecated components removed** | Verify no use of `p:editor` (replaced by `p:textEditor` already in use) | None expected |
+| **FileUpload API** | `org.primefaces.model.UploadedFile` and `org.primefaces.event.FileUploadEvent` remain stable in 7.0; native uploader is default | `ElementsBean.java` — no change needed |
+| **DataTable lazy loading** | `LazyDataModel.setRowCount()` deprecation warning; project does not use lazy loading | None |
+| **Calendar → DatePicker** | `p:calendar` deprecated in favor of `p:datePicker` in 7.0; `p:calendar` still functional | `elements.xhtml` — optional migration |
+| **Client-side API renames** | Some widget vars renamed (PF → PrimeFaces); verify inline JS | No inline JS in project |
+| **Context param changes** | `primefaces.UPLOADER=native` is now the default; param can be removed but is harmless | `web.xml` — optional cleanup |
 
 ---
 
@@ -21,19 +35,12 @@ Upgrade PrimeFaces from 6.2.30 to 7.0 in the `primefaces-homeoffice` WAR project
 
 | Metric | Low | Expected | High |
 |--------|-----|----------|------|
-| AWS Transform agent minutes | 8 | 12 | 20 |
-| Human review effort (hours) | 0.25 | 0.5 | 1 |
-| QA effort (hours) | 0.5 | 1 | 2 |
-| Calendar duration (days) | < 1 | < 1 | 1 |
+| AWS Transform agent minutes | 10 | 15 | 25 |
+| Human review/intervention (minutes) | 5 | 10 | 20 |
+| QA effort (minutes) | 15 | 30 | 45 |
+| Calendar duration | < 1 hour | 1–2 hours | half day |
 
-### Rationale
-
-- The version bump is a single-line change in `gradle/libs.versions.toml`.
-- PrimeFaces 7.0 is backwards-compatible with 6.2 for all components used in this project.
-- `org.primefaces.model.UploadedFile` and `org.primefaces.event.FileUploadEvent` retain the same package/class names in 7.0.
-- `p:calendar` is deprecated in 7.0 (replaced by `p:datePicker`) but continues to function without code changes.
-- The `primefaces.UPLOADER=native` context param becomes redundant (native is the default in 7.0) but causes no conflict if left in place.
-- CSS class names (`.ui-widget`, `.ui-panel`, `.ui-datatable`, etc.) remain unchanged in PF 7.0.
+**Rationale**: This is a small project (6 pages, 1 Java import, single module). PrimeFaces 6.2 → 7.0 is a minor-major bump with high backward compatibility. The main work is: (1) bump version in `libs.versions.toml`, (2) verify build compiles, (3) visual regression check on CSS overrides against Nova theme.
 
 ---
 
@@ -41,20 +48,19 @@ Upgrade PrimeFaces from 6.2.30 to 7.0 in the `primefaces-homeoffice` WAR project
 
 | Item | Low | Expected | High |
 |------|-----|----------|------|
-| Agent minutes | 8 | 12 | 20 |
-| AWS Transform cost (USD 0.035/min) | $0.28 | $0.42 | $0.70 |
+| Agent minutes | 10 | 15 | 25 |
+| AWS Transform cost (USD 0.035/min) | $0.35 | $0.53 | $0.88 |
 
 ---
 
 ## QA Focus
 
-1. **File Upload** – Verify `p:fileUpload` on `elements.xhtml` works correctly; PF 7.0 refactored the native upload internals.
-2. **DataTable** – Confirm sorting, filtering, pagination, and row expansion on `employees.xhtml` and `elements.xhtml`.
-3. **TextEditor** – Validate rich-text editor rendering (`elements.xhtml`); PF 7.0 upgraded the underlying Quill version.
-4. **Calendar/DatePicker** – Confirm `p:calendar` still renders and accepts dates without errors (deprecated but functional).
-5. **Theme/CSS** – Visual regression check on all 6 pages; confirm custom `.ui-*` overrides in `app.css` still apply.
-6. **AutoComplete** – Test typeahead behavior on `elements.xhtml`.
-7. **Dialog & Growl** – Ensure modal dialogs and notification messages display correctly.
+1. **Visual regression** — The custom GOV.UK-style CSS in `app.css` overrides PrimeFaces widget classes (`.ui-widget`, `.ui-panel`, `.ui-datatable`, `.ui-menubar`, `.ui-dialog`, etc.). Theme structural changes in PF 7.0 (Nova) may alter rendered HTML class names or nesting. Verify all 6 pages render correctly.
+2. **File upload** — Test file upload on `elements.xhtml`; confirm `FileUploadEvent` and `UploadedFile` still function with native uploader.
+3. **Calendar component** — `p:calendar` on `elements.xhtml` is deprecated in 7.0 but should still work. Confirm date selection functions.
+4. **DataTable features** — Sorting, filtering, row expansion, and data export on `employees.xhtml`, `dashboard.xhtml`, `reports.xhtml`, and `elements.xhtml`.
+5. **Dialog and ConfirmDialog** — Verify `p:dialog` and `p:confirmDialog` open/close correctly with the new JS widget namespace.
+6. **TextEditor** — `p:textEditor` on `elements.xhtml` uses Quill internally; confirm it initializes without errors.
 
 ---
 
@@ -64,17 +70,22 @@ Upgrade PrimeFaces from 6.2.30 to 7.0 in the `primefaces-homeoffice` WAR project
 
 | # | Risk | Likelihood | Impact | Mitigation |
 |---|------|-----------|--------|------------|
-| 1 | CSS visual regressions from minor PF 7.0 style changes | Low | Low | Visual comparison of all 6 pages |
-| 2 | `p:fileUpload` behavioral change with native uploader refactor | Low | Medium | Functional test of upload flow |
-| 3 | TextEditor Quill version bump introduces JS incompatibility | Low | Low | Test rich-text save/load |
-| 4 | Deprecated `p:calendar` warnings in logs | Expected | None | Cosmetic; no functional impact |
+| 1 | CSS overrides break under Nova theme restructuring | Medium | Medium | Compare PF 6.2 vs 7.0 rendered HTML; adjust `.ui-*` selectors in `app.css` |
+| 2 | `p:calendar` deprecation warnings in logs | High | Low | Functional in 7.0; migrate to `p:datePicker` in a follow-up step |
+| 3 | PrimeFaces 7.0 JAR not in configured Gradle repositories | Low | Low | Available on Maven Central; no action needed |
 
 ### Blockers
 
-None identified. PrimeFaces 7.0 is available on Maven Central and fully compatible with JSF 2.3 / Java EE 8 on JBoss EAP 7.3.
+None identified. PrimeFaces 7.0 is fully compatible with Java 8 and JavaEE 8 (Servlet 3.1+, JSF 2.2+), which matches the current runtime.
 
 ---
 
 ## Recommendation
 
-**Proceed.** This is a low-risk, minimal-effort upgrade. The project uses no removed or renamed APIs between PrimeFaces 6.2 and 7.0. The change consists of a single version bump in the Gradle version catalog followed by a build verification and functional QA pass across the 6 XHTML views.
+**Proceed.** This is a low-risk, low-effort upgrade. The project is small, uses no deprecated-and-removed APIs, and the single Java import (`UploadedFile`, `FileUploadEvent`) is stable across both versions. The primary verification effort is visual QA of CSS overrides against the new default theme. The `p:calendar` → `p:datePicker` migration is optional and can be deferred.
+
+Suggested execution order:
+1. Update `primefaces` version in `gradle/libs.versions.toml` from `6.2.30` to `7.0`.
+2. Run `./gradlew clean build` — expect clean compilation.
+3. Deploy to JBoss EAP and perform visual QA on all 6 pages.
+4. Adjust CSS selectors in `app.css` if Nova theme introduces structural changes.
