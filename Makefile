@@ -9,6 +9,8 @@ MIGRATION_NAME ?= eap-primefaces-modernization-migration
 
 ASSESSMENT_DIR := aws-transform/eap-primefaces-modernization/assessment
 MIGRATION_DIR := aws-transform/eap-primefaces-modernization/migration
+ASSESSMENT_SOURCE_DIR := $(ASSESSMENT_DIR)/definition
+MIGRATION_SOURCE_DIR := $(MIGRATION_DIR)/definition
 ASSESSMENT_CONFIG := $(ASSESSMENT_DIR)/config.yaml
 MIGRATION_CONFIG := $(MIGRATION_DIR)/config.yaml
 ASSESSMENT_REPORT := aws-transform/eap-primefaces-modernization/reports/assessment.md
@@ -60,14 +62,14 @@ atx-status:
 assessment-publish:
 	@$(ATX) custom def publish \
 		--transformation-name "$(ASSESSMENT_NAME)" \
-		--source-directory "$(ASSESSMENT_DIR)" \
+		--source-directory "$(ASSESSMENT_SOURCE_DIR)" \
 		--description "$(ASSESSMENT_DESCRIPTION)"
 
 .PHONY: assessment-draft
 assessment-draft:
 	@$(ATX) custom def save-draft \
 		--transformation-name "$(ASSESSMENT_NAME)" \
-		--source-directory "$(ASSESSMENT_DIR)" \
+		--source-directory "$(ASSESSMENT_SOURCE_DIR)" \
 		--description "$(ASSESSMENT_DESCRIPTION)"
 
 .PHONY: assessment-run
@@ -86,14 +88,14 @@ assessment-validate:
 migration-publish:
 	@$(ATX) custom def publish \
 		--transformation-name "$(MIGRATION_NAME)" \
-		--source-directory "$(MIGRATION_DIR)" \
+		--source-directory "$(MIGRATION_SOURCE_DIR)" \
 		--description "$(MIGRATION_DESCRIPTION)"
 
 .PHONY: migration-draft
 migration-draft:
 	@$(ATX) custom def save-draft \
 		--transformation-name "$(MIGRATION_NAME)" \
-		--source-directory "$(MIGRATION_DIR)" \
+		--source-directory "$(MIGRATION_SOURCE_DIR)" \
 		--description "$(MIGRATION_DESCRIPTION)"
 
 .PHONY: migration-run

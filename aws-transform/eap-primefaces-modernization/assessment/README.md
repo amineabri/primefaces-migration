@@ -19,7 +19,7 @@ It must not modernize the application code.
 ```bash
 atx custom def publish \
   --transformation-name eap-primefaces-modernization-assessment \
-  --source-directory aws-transform/eap-primefaces-modernization/assessment \
+  --source-directory aws-transform/eap-primefaces-modernization/assessment/definition \
   --description "Assess EAP 7.3 and PrimeFaces 6.2 modernization effort, cost, time, and risk"
 ```
 

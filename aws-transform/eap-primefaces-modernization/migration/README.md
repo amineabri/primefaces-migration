@@ -13,7 +13,7 @@ aws-transform/eap-primefaces-modernization/reports/assessment.md
 ```bash
 atx custom def publish \
   --transformation-name eap-primefaces-modernization-migration \
-  --source-directory aws-transform/eap-primefaces-modernization/migration \
+  --source-directory aws-transform/eap-primefaces-modernization/migration/definition \
   --description "Modernize EAP 7.3 Java EE PrimeFaces app to EAP 8.1 Jakarta EE and PrimeFaces 15"
 ```
 
