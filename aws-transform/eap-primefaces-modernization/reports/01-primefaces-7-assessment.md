@@ -1,68 +1,48 @@
-# PrimeFaces 6.2.30 → 7.0 Assessment
+# PrimeFaces 6.2.30 → 7.0 Upgrade Assessment
 
-## Scope
+## Summary
 
-Upgrade PrimeFaces dependency from **6.2.30** to **7.0** only. No changes to JBoss EAP, Java version, Jakarta namespace, Docker, or deployment descriptors.
-
-### Project Profile
-
-| Metric | Value |
-|--------|-------|
-| XHTML pages | 6 |
-| Distinct PrimeFaces components used | ~40+ |
-| Java files importing org.primefaces | 1 (`ElementsBean.java`) |
-| CSS files targeting PF widget classes | 1 (`app.css`) |
-| PrimeFaces config in web.xml | 1 (`primefaces.UPLOADER=native`) |
-| Build system | Gradle (version catalog) |
-
----
-
-## Breaking Changes (6.2 → 7.0)
-
-| Area | Impact | Files Affected |
-|------|--------|----------------|
-| **Theme default change** (Aristo → Nova) | CSS overrides in `app.css` may need adjustment for new Nova theme class structure | `app.css` |
-| **Deprecated components removed** | Verify no use of `p:editor` (replaced by `p:textEditor` already in use) | None expected |
-| **FileUpload API** | `org.primefaces.model.UploadedFile` and `org.primefaces.event.FileUploadEvent` remain stable in 7.0; native uploader is default | `ElementsBean.java` — no change needed |
-| **DataTable lazy loading** | `LazyDataModel.setRowCount()` deprecation warning; project does not use lazy loading | None |
-| **Calendar → DatePicker** | `p:calendar` deprecated in favor of `p:datePicker` in 7.0; `p:calendar` still functional | `elements.xhtml` — optional migration |
-| **Client-side API renames** | Some widget vars renamed (PF → PrimeFaces); verify inline JS | No inline JS in project |
-| **Context param changes** | `primefaces.UPLOADER=native` is now the default; param can be removed but is harmless | `web.xml` — optional cleanup |
-
----
+| Item | Value |
+|------|-------|
+| Current version | PrimeFaces 6.2.30 |
+| Target version | PrimeFaces 7.0 |
+| XHTML files | 6 |
+| Unique PF components used | ~27 |
+| PrimeFaces Extensions | Not used |
+| Custom theme | None (default) |
+| Build system | Gradle with version catalog |
 
 ## Estimate
 
 | Metric | Low | Expected | High |
 |--------|-----|----------|------|
 | AWS Transform agent minutes | 10 | 15 | 25 |
-| Human review/intervention (minutes) | 5 | 10 | 20 |
-| QA effort (minutes) | 15 | 30 | 45 |
-| Calendar duration | < 1 hour | 1–2 hours | half day |
+| Human effort (hours) | 0.5 | 1 | 2 |
+| QA effort (hours) | 1 | 2 | 4 |
+| Calendar duration (days) | 1 | 1 | 2 |
 
-**Rationale**: This is a small project (6 pages, 1 Java import, single module). PrimeFaces 6.2 → 7.0 is a minor-major bump with high backward compatibility. The main work is: (1) bump version in `libs.versions.toml`, (2) verify build compiles, (3) visual regression check on CSS overrides against Nova theme.
+### Rationale
 
----
+PrimeFaces 7.0 is a minor major bump from 6.2.x with high backward compatibility. The project is small (6 XHTML pages, ~27 component tags) and uses only standard components with no extensions or custom themes. Key changes in PF 7.0:
+
+- jQuery updated to 3.x (removes deprecated jQuery APIs from PF client-side code).
+- Some deprecated attributes removed (e.g., `sortBy`/`filterBy` string expressions replaced with EL on certain components).
+- `p:calendar` deprecated in favor of `p:datePicker` (still functional in 7.0).
+- Minor CSS class name changes for the default theme.
+- `primefaces.UPLOADER=native` remains supported.
+
+Given the project's limited surface area and standard component usage, most changes are confined to bumping the dependency version and verifying behavior.
 
 ## Cost
 
-| Item | Low | Expected | High |
-|------|-----|----------|------|
+| Metric | Low | Expected | High |
+|--------|-----|----------|------|
 | Agent minutes | 10 | 15 | 25 |
-| AWS Transform cost (USD 0.035/min) | $0.35 | $0.53 | $0.88 |
+| AWS Transform cost (USD) | $0.35 | $0.53 | $0.88 |
 
----
-
-## QA Focus
-
-1. **Visual regression** — The custom GOV.UK-style CSS in `app.css` overrides PrimeFaces widget classes (`.ui-widget`, `.ui-panel`, `.ui-datatable`, `.ui-menubar`, `.ui-dialog`, etc.). Theme structural changes in PF 7.0 (Nova) may alter rendered HTML class names or nesting. Verify all 6 pages render correctly.
-2. **File upload** — Test file upload on `elements.xhtml`; confirm `FileUploadEvent` and `UploadedFile` still function with native uploader.
-3. **Calendar component** — `p:calendar` on `elements.xhtml` is deprecated in 7.0 but should still work. Confirm date selection functions.
-4. **DataTable features** — Sorting, filtering, row expansion, and data export on `employees.xhtml`, `dashboard.xhtml`, `reports.xhtml`, and `elements.xhtml`.
-5. **Dialog and ConfirmDialog** — Verify `p:dialog` and `p:confirmDialog` open/close correctly with the new JS widget namespace.
-6. **TextEditor** — `p:textEditor` on `elements.xhtml` uses Quill internally; confirm it initializes without errors.
-
----
+```
+AWS Transform cost = estimated agent minutes × $0.035/min
+```
 
 ## Risks And Blockers
 
@@ -70,22 +50,25 @@ Upgrade PrimeFaces dependency from **6.2.30** to **7.0** only. No changes to JBo
 
 | # | Risk | Likelihood | Impact | Mitigation |
 |---|------|-----------|--------|------------|
-| 1 | CSS overrides break under Nova theme restructuring | Medium | Medium | Compare PF 6.2 vs 7.0 rendered HTML; adjust `.ui-*` selectors in `app.css` |
-| 2 | `p:calendar` deprecation warnings in logs | High | Low | Functional in 7.0; migrate to `p:datePicker` in a follow-up step |
-| 3 | PrimeFaces 7.0 JAR not in configured Gradle repositories | Low | Low | Available on Maven Central; no action needed |
+| 1 | jQuery 3.x incompatibility in custom JS (if any) | Low | Medium | Grep for `$.browser`, `$.fn.live`, `$.fn.die` and other removed jQuery APIs |
+| 2 | `p:calendar` behavioral change (date format, locale) | Low | Low | Verify date fields render and submit correctly |
+| 3 | CSS/layout regression from theme update | Low | Low | Visual inspection of all 6 pages |
+| 4 | `sortBy`/`filterBy` EL syntax change in `p:dataTable` | Medium | Low | Review dataTable columns in dashboard, employees, reports |
 
 ### Blockers
 
-None identified. PrimeFaces 7.0 is fully compatible with Java 8 and JavaEE 8 (Servlet 3.1+, JSF 2.2+), which matches the current runtime.
+None identified. PrimeFaces 7.0 is available on Maven Central and compatible with Java EE 8 / JBoss EAP 7.3.
 
----
+## QA Focus
+
+1. **DataTable sorting and filtering** — Verify all `p:dataTable` instances in dashboard.xhtml, employees.xhtml, and reports.xhtml still sort/filter correctly.
+2. **Form validation flow** — Test elements.xhtml form submission, `p:messages`/`p:growl` display, and `p:resetInput` behavior.
+3. **AutoComplete** — Confirm `p:autoComplete` suggestion list renders and selection works.
+4. **Calendar/Date inputs** — Verify `p:calendar` date picker opens, selects, and submits dates.
+5. **Menu navigation** — Confirm `p:menubar` and `p:menuitem` links work without JS errors.
+6. **AJAX interactions** — Verify `p:ajax` and `p:ajaxStatus` callbacks fire correctly (jQuery 3 migration).
+7. **AccordionPanel** — Test expand/collapse in reports.xhtml.
 
 ## Recommendation
 
-**Proceed.** This is a low-risk, low-effort upgrade. The project is small, uses no deprecated-and-removed APIs, and the single Java import (`UploadedFile`, `FileUploadEvent`) is stable across both versions. The primary verification effort is visual QA of CSS overrides against the new default theme. The `p:calendar` → `p:datePicker` migration is optional and can be deferred.
-
-Suggested execution order:
-1. Update `primefaces` version in `gradle/libs.versions.toml` from `6.2.30` to `7.0`.
-2. Run `./gradlew clean build` — expect clean compilation.
-3. Deploy to JBoss EAP and perform visual QA on all 6 pages.
-4. Adjust CSS selectors in `app.css` if Nova theme introduces structural changes.
+**Proceed.** This is a low-risk, low-effort upgrade. The application uses a small set of standard PrimeFaces components with no extensions or custom themes. The expected agent cost is under $1 and human review should require approximately 1 hour plus 2 hours of QA validation. No blockers exist.
