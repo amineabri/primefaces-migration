@@ -86,9 +86,14 @@ make assessments-publish
 make assessments-run
 make assessments-validate
 make staged-publish
+make pf7-run
 make pf8-run
+make pf10-run
 make pf11-run
-make eap8-pf15-run
+make pf12-run
+make pf13-run
+make pf14-run
+make pf15-run
 ```
 
 ## Project Structure

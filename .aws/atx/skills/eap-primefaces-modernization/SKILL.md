@@ -13,15 +13,27 @@ During assessment, do not modify application code, build files, Docker files, de
 
 Per-stage assessment reports:
 
-- `aws-transform/eap-primefaces-modernization/reports/01-primefaces-8-assessment.md`
-- `aws-transform/eap-primefaces-modernization/reports/02-primefaces-11-assessment.md`
-- `aws-transform/eap-primefaces-modernization/reports/03-eap8-primefaces15-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/01-primefaces-7-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/02-primefaces-8-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/03-primefaces-10-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/04-primefaces-11-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/05-primefaces-12-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/06-primefaces-13-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/07-primefaces-14-assessment.md`
+- `aws-transform/eap-primefaces-modernization/reports/08-primefaces-15-jakarta-assessment.md`
 
 Per-stage migration order:
 
-1. PrimeFaces 6.2.30 to PrimeFaces 8.0 on current Java EE / EAP 7.3.
-2. PrimeFaces 8.0 to PrimeFaces 11.0.0 on current Java EE / EAP 7.3.
-3. PrimeFaces 11.0.0 to PrimeFaces 15.0.16 Jakarta plus EAP 8.1 / Jakarta EE 10 / Java 21.
+1. PrimeFaces 6.2.30 to PrimeFaces 7.0 on current Java EE / EAP 7.3.
+2. PrimeFaces 7.0 to PrimeFaces 8.0 on current Java EE / EAP 7.3.
+3. PrimeFaces 8.0 to PrimeFaces 10.0.0 on current Java EE / EAP 7.3.
+4. PrimeFaces 10.0.0 to PrimeFaces 11.0.0 on current Java EE / EAP 7.3.
+5. PrimeFaces 11.0.0 to PrimeFaces 12.0.0 on current Java EE / EAP 7.3.
+6. PrimeFaces 12.0.0 to PrimeFaces 13.0.0 on current Java EE / EAP 7.3.
+7. PrimeFaces 13.0.0 to PrimeFaces 14.0.0 on current Java EE / EAP 7.3.
+8. PrimeFaces 14.0.0 to PrimeFaces 15.0.16 Jakarta plus EAP 8.1 / Jakarta EE 10 / Java 21.
+
+PrimeFaces does not have a normal public 9.x major stage in this path; do not invent a PrimeFaces 9 stage.
 
 Do not continue to the next migration stage until the testing team has completed the QA checkpoint for the previous stage.
 

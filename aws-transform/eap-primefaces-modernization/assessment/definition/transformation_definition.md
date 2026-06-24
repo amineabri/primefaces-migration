@@ -33,9 +33,16 @@ aws-transform/eap-primefaces-modernization/reports/assessment.md
 
 Estimate these stages separately:
 
-1. PrimeFaces 6.2.30 to PrimeFaces 8.0 on the current Java EE / EAP 7.3 stack.
-2. PrimeFaces 8.0 to PrimeFaces 11.0.0 on the current Java EE / EAP 7.3 stack.
-3. PrimeFaces 11.0.0 to PrimeFaces 15.0.16 Jakarta, plus JBoss EAP 8.1 / Jakarta EE 10 / Java 21 cutover.
+1. PrimeFaces 6.2.30 to PrimeFaces 7.0 on the current Java EE / EAP 7.3 stack.
+2. PrimeFaces 7.0 to PrimeFaces 8.0 on the current Java EE / EAP 7.3 stack.
+3. PrimeFaces 8.0 to PrimeFaces 10.0.0 on the current Java EE / EAP 7.3 stack.
+4. PrimeFaces 10.0.0 to PrimeFaces 11.0.0 on the current Java EE / EAP 7.3 stack.
+5. PrimeFaces 11.0.0 to PrimeFaces 12.0.0 on the current Java EE / EAP 7.3 stack.
+6. PrimeFaces 12.0.0 to PrimeFaces 13.0.0 on the current Java EE / EAP 7.3 stack.
+7. PrimeFaces 13.0.0 to PrimeFaces 14.0.0 on the current Java EE / EAP 7.3 stack.
+8. PrimeFaces 14.0.0 to PrimeFaces 15.0.16 Jakarta, plus JBoss EAP 8.1 / Jakarta EE 10 / Java 21 cutover.
+
+PrimeFaces does not have a normal public 9.x major stage in this path, so the next stage after 8.0 is 10.0.0.
 
 ## Assessment Steps
 
@@ -72,9 +79,14 @@ Build, runtime, dependencies, page count, Java source count, descriptor count.
 
 ## Stage Breakdown
 One subsection per stage:
-- PrimeFaces 6.2.30 to 8.0
-- PrimeFaces 8.0 to 11.0.0
-- EAP 8.1 and PrimeFaces 15.0.16 Jakarta
+- PrimeFaces 6.2.30 to 7.0
+- PrimeFaces 7.0 to 8.0
+- PrimeFaces 8.0 to 10.0.0
+- PrimeFaces 10.0.0 to 11.0.0
+- PrimeFaces 11.0.0 to 12.0.0
+- PrimeFaces 12.0.0 to 13.0.0
+- PrimeFaces 13.0.0 to 14.0.0
+- PrimeFaces 14.0.0 to 15.0.16 Jakarta plus EAP 8.1
 
 ## Estimate
 Table with low / expected / high:
@@ -104,9 +116,11 @@ Recommendation and prerequisites.
 
 Use the repository size and complexity to estimate:
 
-- PrimeFaces 6.2.30 to 8.0: UI library compatibility only; low to medium complexity.
-- PrimeFaces 8.0 to 11.0.0: UI library compatibility only; medium complexity.
-- PrimeFaces 11.0.0 to 15.0.16 Jakarta plus EAP 8.1: higher complexity because it combines PrimeFaces, Jakarta namespace, descriptor, Java 21, and Docker updates.
+- PrimeFaces 6.2.30 to 7.0: UI library compatibility only; low to medium complexity.
+- PrimeFaces 7.0 to 8.0: UI library compatibility only; low to medium complexity.
+- PrimeFaces 8.0 to 10.0.0: UI library compatibility only; medium complexity. Note the absence of a normal public 9.x stage.
+- PrimeFaces 10.0.0 to 14.0.0, one major line at a time: UI library compatibility only; medium complexity.
+- PrimeFaces 14.0.0 to 15.0.16 Jakarta plus EAP 8.1: higher complexity because it combines PrimeFaces, Jakarta namespace, descriptor, Java 21, and Docker updates.
 
 Prefer ranges over single-point estimates.
 
@@ -123,9 +137,14 @@ The assessment must include a table like:
 ```markdown
 | Stage | Scenario | Estimated agent minutes | Estimated AWS Transform cost |
 | --- | ---: | ---: |
-| PrimeFaces 6.2.30 to 8.0 | Expected | 45 | $1.58 |
-| PrimeFaces 8.0 to 11.0.0 | Expected | 60 | $2.10 |
-| EAP 8.1 and PrimeFaces 15 Jakarta | Expected | 120 | $4.20 |
+| PrimeFaces 6.2.30 to 7.0 | Expected | 30 | $1.05 |
+| PrimeFaces 7.0 to 8.0 | Expected | 30 | $1.05 |
+| PrimeFaces 8.0 to 10.0.0 | Expected | 45 | $1.58 |
+| PrimeFaces 10.0.0 to 11.0.0 | Expected | 45 | $1.58 |
+| PrimeFaces 11.0.0 to 12.0.0 | Expected | 45 | $1.58 |
+| PrimeFaces 12.0.0 to 13.0.0 | Expected | 45 | $1.58 |
+| PrimeFaces 13.0.0 to 14.0.0 | Expected | 45 | $1.58 |
+| PrimeFaces 14.0.0 to 15.0.16 Jakarta and EAP 8.1 | Expected | 120 | $4.20 |
 ```
 
 Use estimates appropriate to this repository rather than copying the sample numbers blindly.
