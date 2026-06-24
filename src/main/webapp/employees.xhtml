@@ -19,19 +19,19 @@
                          rows="5"
                          emptyMessage="No employees found"
                          styleClass="data-table">
-                <p:column headerText="Employee ID" sortBy="#{employee.employeeId}" filterBy="#{employee.employeeId}" filterMatchMode="contains">
+                <p:column headerText="Employee ID" sortBy="employeeId" filterBy="employeeId" filterMatchMode="contains">
                     #{employee.employeeId}
                 </p:column>
-                <p:column headerText="Name" sortBy="#{employee.name}" filterBy="#{employee.name}" filterMatchMode="contains">
+                <p:column headerText="Name" sortBy="name" filterBy="name" filterMatchMode="contains">
                     #{employee.name}
                 </p:column>
-                <p:column headerText="Department" sortBy="#{employee.department}" filterBy="#{employee.department}" filterMatchMode="contains">
+                <p:column headerText="Department" sortBy="department" filterBy="department" filterMatchMode="contains">
                     #{employee.department}
                 </p:column>
-                <p:column headerText="Location" sortBy="#{employee.location}" filterBy="#{employee.location}" filterMatchMode="contains">
+                <p:column headerText="Location" sortBy="location" filterBy="location" filterMatchMode="contains">
                     #{employee.location}
                 </p:column>
-                <p:column headerText="Status" sortBy="#{employee.status}" filterBy="#{employee.status}" filterMatchMode="contains">
+                <p:column headerText="Status" sortBy="status" filterBy="status" filterMatchMode="contains">
                     <span class="status-pill">#{employee.status}</span>
                 </p:column>
             </p:dataTable>

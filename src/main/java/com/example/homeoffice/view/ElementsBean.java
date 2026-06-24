@@ -2,7 +2,7 @@ package com.example.homeoffice.view;
 
 import com.example.homeoffice.model.ElementRecord;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.model.file.UploadedFile;
 
 import java.io.Serializable;
 import java.util.ArrayList;

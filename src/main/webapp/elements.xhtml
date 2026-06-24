@@ -52,9 +52,9 @@
                         </p:selectBooleanCheckbox>
 
                         <p:outputLabel for="reviewDate" value="Review date"/>
-                        <p:calendar id="reviewDate" value="#{elementsBean.reviewDate}" pattern="dd/MM/yyyy" showOn="button">
+                        <p:datePicker id="reviewDate" value="#{elementsBean.reviewDate}" pattern="dd/MM/yyyy" showIcon="true">
                             <p:ajax event="dateSelect" update="selectionSummary"/>
-                        </p:calendar>
+                        </p:datePicker>
 
                         <p:outputLabel for="priority" value="Priority"/>
                         <p:selectOneRadio id="priority" value="#{elementsBean.priority}">
@@ -147,16 +147,16 @@
                     <p:column style="width:42px">
                         <p:rowToggler/>
                     </p:column>
-                    <p:column headerText="Reference" sortBy="#{record.reference}" filterBy="#{record.reference}" filterMatchMode="contains">
+                    <p:column headerText="Reference" sortBy="reference" filterBy="reference" filterMatchMode="contains">
                         #{record.reference}
                     </p:column>
-                    <p:column headerText="Service" sortBy="#{record.service}" filterBy="#{record.service}" filterMatchMode="contains">
+                    <p:column headerText="Service" sortBy="service" filterBy="service" filterMatchMode="contains">
                         #{record.service}
                     </p:column>
-                    <p:column headerText="Owner" sortBy="#{record.owner}" filterBy="#{record.owner}" filterMatchMode="contains">
+                    <p:column headerText="Owner" sortBy="owner" filterBy="owner" filterMatchMode="contains">
                         #{record.owner}
                     </p:column>
-                    <p:column headerText="Status" sortBy="#{record.status}">
+                    <p:column headerText="Status" sortBy="status">
                         <span class="status-pill">#{record.status}</span>
                     </p:column>
                     <p:rowExpansion>
@@ -189,7 +189,6 @@
                     <p:textEditor id="editor"
                                   value="#{elementsBean.editorText}"
                                   height="150"
-                                  secure="false"
                                   placeholder="Enter a short service note"/>
 
                     <p:outputPanel id="autoPanel" styleClass="selection-summary">
@@ -212,7 +211,7 @@
                                   mode="advanced"
                                   dragDropSupport="false"
                                   auto="true"
-                                  fileUploadListener="#{elementsBean.handleUpload}"
+                                  listener="#{elementsBean.handleUpload}"
                                   update="uploadStatus messages growl"
                                   label="Choose file"
                                   allowTypes="/(\.|\/)(txt|csv|pdf)$/"
