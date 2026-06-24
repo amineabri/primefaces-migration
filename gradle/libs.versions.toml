@@ -1,6 +1,6 @@
 [versions]
 javaee = "8.0"
-primefaces = "8.0"
+primefaces = "10.0.0"
 
 [libraries]
 javaee-api = { module = "javax:javaee-api", version.ref = "javaee" }

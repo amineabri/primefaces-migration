@@ -197,9 +197,9 @@
                     </p:outputPanel>
 
                     <h3>Repeated departments</h3>
-                    <p:repeat value="#{elementsBean.departments}" var="departmentName">
+                    <ui:repeat value="#{elementsBean.departments}" var="departmentName">
                         <span class="tag">#{departmentName}</span>
-                    </p:repeat>
+                    </ui:repeat>
                 </p:panel>
 
                 <p:panel header="Upload And Progress" styleClass="content-panel">

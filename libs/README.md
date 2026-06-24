@@ -5,7 +5,7 @@ Place the PrimeFaces Elite/PRO maintenance JAR here if it is not available from 
 Expected file name:
 
 ```text
-primefaces-8.0.jar
+primefaces-10.0.0.jar
 ```
 
-The Gradle build uses this local JAR first. If it is not present, Gradle resolves `org.primefaces:primefaces:8.0` from the configured repositories.
+The Gradle build uses this local JAR first. If it is not present, Gradle resolves `org.primefaces:primefaces:10.0.0` from the configured repositories.
