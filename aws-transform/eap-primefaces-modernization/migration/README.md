@@ -25,7 +25,7 @@ Use `--limit` to cap migration agent minutes.
 atx custom def exec \
   --code-repository-path . \
   --transformation-name eap-primefaces-modernization-migration \
-  --configuration aws-transform/eap-primefaces-modernization/migration/config.yaml \
+  --configuration "file://$(pwd)/aws-transform/eap-primefaces-modernization/migration/config.yaml" \
   --limit 180
 ```
 

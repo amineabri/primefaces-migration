@@ -31,7 +31,7 @@ Use `--limit` to cap assessment agent minutes.
 atx custom def exec \
   --code-repository-path . \
   --transformation-name eap-primefaces-modernization-assessment \
-  --configuration aws-transform/eap-primefaces-modernization/assessment/config.yaml \
+  --configuration "file://$(pwd)/aws-transform/eap-primefaces-modernization/assessment/config.yaml" \
   --limit 30
 ```
 

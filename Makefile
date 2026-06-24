@@ -13,6 +13,8 @@ ASSESSMENT_SOURCE_DIR := $(ASSESSMENT_DIR)/definition
 MIGRATION_SOURCE_DIR := $(MIGRATION_DIR)/definition
 ASSESSMENT_CONFIG := $(ASSESSMENT_DIR)/config.yaml
 MIGRATION_CONFIG := $(MIGRATION_DIR)/config.yaml
+ASSESSMENT_CONFIG_URL := file://$(abspath $(ASSESSMENT_CONFIG))
+MIGRATION_CONFIG_URL := file://$(abspath $(MIGRATION_CONFIG))
 ASSESSMENT_REPORT := aws-transform/eap-primefaces-modernization/reports/assessment.md
 
 ASSESSMENT_LIMIT ?= 30
@@ -77,7 +79,7 @@ assessment-run:
 	@$(ATX) custom def exec \
 		--code-repository-path . \
 		--transformation-name "$(ASSESSMENT_NAME)" \
-		--configuration "$(ASSESSMENT_CONFIG)" \
+		--configuration "$(ASSESSMENT_CONFIG_URL)" \
 		--limit "$(ASSESSMENT_LIMIT)"
 
 .PHONY: assessment-validate
@@ -103,7 +105,7 @@ migration-run:
 	@$(ATX) custom def exec \
 		--code-repository-path . \
 		--transformation-name "$(MIGRATION_NAME)" \
-		--configuration "$(MIGRATION_CONFIG)" \
+		--configuration "$(MIGRATION_CONFIG_URL)" \
 		--limit "$(MIGRATION_LIMIT)"
 
 .PHONY: migration-validate
