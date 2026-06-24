@@ -2,7 +2,17 @@
 
 ## Goal
 
-Modernize this Java EE JSF/PrimeFaces WAR application to run on the latest Red Hat JBoss EAP target and current PrimeFaces major version while preserving the existing application behavior and page set.
+Modernize this Java EE JSF/PrimeFaces WAR application to run on JBoss EAP 8.1 and PrimeFaces 15.0.16 while preserving the existing application behavior and page set.
+
+## Required Precondition
+
+Read the Phase 1 assessment report if present:
+
+```text
+aws-transform/eap-primefaces-modernization/reports/assessment.md
+```
+
+Use it to prioritize risks and validation, but do not let it override the hard target stack below.
 
 ## Target Stack
 

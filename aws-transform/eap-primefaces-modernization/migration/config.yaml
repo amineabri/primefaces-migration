@@ -1,0 +1,14 @@
+codeRepositoryPath: .
+transformationName: eap-primefaces-modernization-migration
+buildCommand: ./gradlew clean build
+additionalPlanContext: |
+  Phase 2 migration. Modernize this Java EE JSF/PrimeFaces WAR application from JBoss EAP 7.3.10.GA, Java EE 8, Java 8, and PrimeFaces 6.2.30 to JBoss EAP 8.1 on OpenJDK 21, Jakarta EE 10, Java 21, and PrimeFaces 15.0.16 with the Jakarta classifier.
+
+  Before changing files, read the Phase 1 assessment report if it exists:
+  aws-transform/eap-primefaces-modernization/reports/assessment.md
+
+  Preserve the existing application scope: no authentication, authorization, database, JPA, REST APIs, messaging, monitoring, Kubernetes, or CI/CD.
+
+  Keep Gradle, WAR packaging, root-context deployment, Docker Compose, GOV.UK-inspired styling, and the current pages.
+
+  Follow aws-transform/eap-primefaces-modernization/migration/transformation_definition.md and .aws/atx/skills/eap-primefaces-modernization/SKILL.md exactly.

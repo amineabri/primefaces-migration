@@ -1,0 +1,22 @@
+codeRepositoryPath: .
+transformationName: eap-primefaces-modernization-assessment
+buildCommand: ./gradlew clean build
+additionalPlanContext: |
+  Phase 1 assessment only. Do not modernize code, do not update build files, do not update Docker files, and do not migrate javax.* to jakarta.* in this phase.
+
+  Inspect this repository and produce a modernization assessment report at:
+  aws-transform/eap-primefaces-modernization/reports/assessment.md
+
+  The report must estimate the migration from JBoss EAP 7.3.10.GA, Java EE 8, Java 8, and PrimeFaces 6.2.30 to JBoss EAP 8.1, Jakarta EE 10, Java 21, and PrimeFaces 15.0.16 with the Jakarta classifier.
+
+  Include:
+  - Inventory of affected files and dependencies.
+  - Work breakdown by build, Java source, XML descriptors, Facelets, PrimeFaces components, Docker, and documentation.
+  - Low / expected / high AWS Transform agent-minute estimate.
+  - Low / expected / high human engineering review and manual QA estimate.
+  - Cost formula: estimated AWS Transform cost = agent minutes * current AWS Transform custom transformation agent-minute price.
+  - Note that the current price must be checked at execution time from AWS pricing because pricing can change.
+  - Risk rating and blockers.
+  - Migration phase readiness checklist.
+
+  The only file this phase may create or modify is the assessment report.

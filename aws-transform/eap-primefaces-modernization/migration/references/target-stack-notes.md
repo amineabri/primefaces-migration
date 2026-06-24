@@ -33,5 +33,3 @@ For private/local artifact workflows, use:
 ```text
 libs/primefaces-15.0.16-jakarta.jar
 ```
-
-PrimeFaces package names mostly remain `org.primefaces.*`, but some model classes moved between PrimeFaces 6 and newer versions. In this app, check file upload imports first.

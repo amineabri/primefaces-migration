@@ -1,6 +1,15 @@
 # EAP PrimeFaces Modernization Skill
 
-Use this skill when modernizing this repository from JBoss EAP 7.3 / Java EE 8 / PrimeFaces 6.2.30 to JBoss EAP 8.1 / Jakarta EE 10 / PrimeFaces 15.0.16.
+Use this skill when assessing or modernizing this repository from JBoss EAP 7.3 / Java EE 8 / PrimeFaces 6.2.30 to JBoss EAP 8.1 / Jakarta EE 10 / PrimeFaces 15.0.16.
+
+## Workflow
+
+Run modernization in two phases:
+
+1. Assessment phase: inspect the repository, estimate time/cost/risk, and write `aws-transform/eap-primefaces-modernization/reports/assessment.md`.
+2. Migration phase: read the assessment report, then modernize the app according to the target decisions below.
+
+During assessment, do not modify application code, build files, Docker files, descriptors, JSF pages, or README files. The only allowed assessment output is the report.
 
 ## Target Decisions
 
@@ -22,6 +31,7 @@ Use this skill when modernizing this repository from JBoss EAP 7.3 / Java EE 8 /
 - Keep PrimeFaces namespace as `http://primefaces.org/ui`.
 - Update `web.xml`, `beans.xml`, `jboss-web.xml`, Docker files, and README together.
 - Do not leave mixed Java EE and Jakarta EE APIs in the same codebase.
+- During migration, read the assessment report if it exists before editing files.
 
 ## Known PrimeFaces Migration Checks
 

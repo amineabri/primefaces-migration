@@ -1,6 +1,6 @@
-# AWS Transform Custom Transformer: EAP And PrimeFaces Modernization
+# AWS Transform Two-Phase Modernization
 
-This directory contains a custom AWS Transform definition for modernizing this application from:
+This directory contains a two-phase AWS Transform custom workflow for modernizing this application from:
 
 - JBoss EAP 7.3.x / Java EE 8 / `javax.*`
 - PrimeFaces 6.2.30
@@ -13,30 +13,67 @@ to:
 - PrimeFaces 15.0.16 Jakarta artifact
 - Java 21
 
-## Publish The Transformer
+## Phase 1: Assessment
+
+Purpose: estimate work, risk, time, and AWS Transform cost before changing application code.
+
+Publish:
 
 ```bash
 atx custom def publish \
-  --transformation-name eap-primefaces-modernization \
-  --source-directory aws-transform/eap-primefaces-modernization
+  --transformation-name eap-primefaces-modernization-assessment \
+  --source-directory aws-transform/eap-primefaces-modernization/assessment \
+  --description "Assess EAP 7.3 and PrimeFaces 6.2 modernization effort, cost, time, and risk"
 ```
 
-Use `save-draft` instead of `publish` while iterating:
-
-```bash
-atx custom def save-draft \
-  --transformation-name eap-primefaces-modernization \
-  --source-directory aws-transform/eap-primefaces-modernization
-```
-
-## Execute Against This Repository
+Execute with an assessment budget cap:
 
 ```bash
 atx custom def exec \
   --code-repository-path . \
-  --transformation-name eap-primefaces-modernization \
-  --configuration aws-transform/eap-primefaces-modernization/config.yaml
+  --transformation-name eap-primefaces-modernization-assessment \
+  --configuration aws-transform/eap-primefaces-modernization/assessment/config.yaml \
+  --limit 30
 ```
+
+Expected output:
+
+```text
+aws-transform/eap-primefaces-modernization/reports/assessment.md
+```
+
+## Phase 2: Migration
+
+Purpose: perform the modernization after reviewing the assessment.
+
+Publish:
+
+```bash
+atx custom def publish \
+  --transformation-name eap-primefaces-modernization-migration \
+  --source-directory aws-transform/eap-primefaces-modernization/migration \
+  --description "Modernize EAP 7.3 Java EE PrimeFaces app to EAP 8.1 Jakarta EE and PrimeFaces 15"
+```
+
+Execute with a migration budget cap:
+
+```bash
+atx custom def exec \
+  --code-repository-path . \
+  --transformation-name eap-primefaces-modernization-migration \
+  --configuration aws-transform/eap-primefaces-modernization/migration/config.yaml \
+  --limit 180
+```
+
+## Cost Control
+
+AWS Transform custom transformations use agent minutes. The `--limit` option caps the agent-minute budget for each phase. The assessment report must calculate estimated cost as:
+
+```text
+estimated cost = estimated agent minutes * current AWS Transform custom transformation agent-minute price
+```
+
+Check current AWS pricing when running the assessment because prices can change.
 
 ## References
 

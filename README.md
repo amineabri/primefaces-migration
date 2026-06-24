@@ -69,10 +69,20 @@ http://localhost:8080/
 
 The application is deployed as the root web application, so the JBoss EAP welcome page is replaced by the JSF Home page at `/`.
 
+## AWS Transform Modernization
+
+The AWS Transform custom workflow is split into two phases:
+
+- Assessment: `aws-transform/eap-primefaces-modernization/assessment`
+- Migration: `aws-transform/eap-primefaces-modernization/migration`
+
+Start with the assessment phase to estimate time, cost, and risk before running the migration phase. See [aws-transform/eap-primefaces-modernization/README.md](aws-transform/eap-primefaces-modernization/README.md).
+
 ## Project Structure
 
 ```text
 .
+├── aws-transform
 ├── Dockerfile
 ├── build.gradle
 ├── docker-compose.yml

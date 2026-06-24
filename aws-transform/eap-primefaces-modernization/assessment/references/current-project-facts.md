@@ -14,4 +14,4 @@
   - `employees.xhtml`
   - `reports.xhtml`
   - `elements.xhtml`
-- Current app intentionally has no authentication, authorization, database, JPA, REST APIs, messaging, monitoring, CI/CD, or Kubernetes.
+- The app intentionally has no authentication, authorization, database, JPA, REST APIs, messaging, monitoring, CI/CD, or Kubernetes.
