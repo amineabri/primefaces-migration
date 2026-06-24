@@ -139,6 +139,7 @@
                 <p:dataTable id="recordsTable"
                              value="#{elementsBean.records}"
                              var="record"
+                             rowKey="#{record.reference}"
                              styleClass="data-table"
                              paginator="true"
                              rows="4">
@@ -187,6 +188,7 @@
                     <p:textEditor id="editor"
                                   value="#{elementsBean.editorText}"
                                   height="150"
+                                  secure="false"
                                   placeholder="Enter a short service note"/>
 
                     <p:outputPanel id="autoPanel" styleClass="selection-summary">
@@ -207,13 +209,15 @@
 
                     <p:fileUpload id="fileUpload"
                                   mode="advanced"
-                                  dragDropSupport="false"
+                                  dragDrop="false"
                                   auto="true"
                                   listener="#{elementsBean.handleUpload}"
                                   update="uploadStatus messages"
                                   label="Choose file"
-                                  allowTypes="/(\.|\/)(txt|csv|pdf)$/"
-                                  sizeLimit="1048576"/>
+                                  accept=".txt,.csv,.pdf">
+                        <p:validateFile allowTypes="/(\.|\/)(txt|csv|pdf)$/"
+                                        sizeLimit="1048576"/>
+                    </p:fileUpload>
 
                     <p:outputPanel id="progressPanel" styleClass="progress-block">
                         <p:progressBar value="#{elementsBean.progress}" labelTemplate="{value}%"/>

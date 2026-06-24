@@ -22,7 +22,9 @@ No Spring Boot, Quarkus, authentication, authorization, database, JPA, REST API,
 - Java 21
 - Gradle wrapper included
 - Docker
-- Access to the Red Hat registry image `registry.redhat.io/jboss-eap-8/eap81-openjdk21-runtime-openshift-rhel9:latest`
+- Access to the Red Hat registry images:
+  - `registry.redhat.io/jboss-eap-8/eap81-openjdk21-builder-openshift-rhel9:latest`
+  - `registry.redhat.io/jboss-eap-8/eap81-openjdk21-runtime-openshift-rhel9:latest`
 - Access to the PrimeFaces 15.0.16 artifact
 
 PrimeFaces 15.0.16 Jakarta is a PRO release. The Gradle build resolves it in this order:
@@ -52,7 +54,9 @@ Log in to the Red Hat registry if required:
 docker login registry.redhat.io
 ```
 
-The official Red Hat JBoss EAP 8.1 OpenJDK 21 image is published for `amd64`. On Apple Silicon or other ARM hosts, this project uses Docker Desktop emulation by explicitly setting the container platform to `linux/amd64`.
+The official Red Hat JBoss EAP 8.1 OpenJDK 21 images are published for `amd64`. On Apple Silicon or other ARM hosts, this project uses Docker Desktop emulation by explicitly setting the container platform to `linux/amd64`.
+
+The Dockerfile uses the Red Hat EAP 8.1 builder image to provision the server under `/opt/server`, then copies that provisioned server into the EAP 8.1 runtime image. This pairing is required because the runtime image is intentionally thin and expects `/opt/server` to already exist.
 
 Build the WAR first, then start the container:
 
