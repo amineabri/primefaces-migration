@@ -5,7 +5,7 @@ plugins {
 
 group = 'com.example.homeoffice'
 version = '1.0.0'
-description = 'Minimal Java EE JSF application for JBoss EAP 7.3.10.GA and PrimeFaces 6.2.30.'
+description = 'Minimal Java EE JSF application for JBoss EAP 7.3.10.GA and PrimeFaces 7.0.'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
