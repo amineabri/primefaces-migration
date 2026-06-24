@@ -1,7 +1,7 @@
 [versions]
-javaee = "8.0"
-primefaces = "14.0.0"
+jakartaee = "10.0.0"
+primefaces = "15.0.16"
 
 [libraries]
-javaee-api = { module = "javax:javaee-api", version.ref = "javaee" }
+jakartaee-api = { module = "jakarta.platform:jakarta.jakartaee-api", version.ref = "jakartaee" }
 primefaces = { module = "org.primefaces:primefaces", version.ref = "primefaces" }

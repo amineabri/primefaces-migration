@@ -5,21 +5,21 @@ plugins {
 
 group = 'com.example.homeoffice'
 version = '1.0.0'
-description = 'Minimal Java EE JSF application for JBoss EAP 7.3.10.GA and PrimeFaces 8.0.'
+description = 'Jakarta EE 10 JSF application for JBoss EAP 8.1 and PrimeFaces 15.0.16.'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
-def localPrimeFacesJar = layout.projectDirectory.file("libs/primefaces-${libs.versions.primefaces.get()}.jar").asFile
+def localPrimeFacesJar = layout.projectDirectory.file("libs/primefaces-${libs.versions.primefaces.get()}-jakarta.jar").asFile
 
 dependencies {
-    providedCompile libs.javaee.api
+    providedCompile libs.jakartaee.api
     if (localPrimeFacesJar.exists()) {
         implementation files(localPrimeFacesJar)
     } else {
-        implementation libs.primefaces
+        implementation(libs.primefaces) { artifact { classifier = 'jakarta' } }
     }
 }
 

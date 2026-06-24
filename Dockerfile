@@ -1,4 +1,4 @@
-ARG EAP_IMAGE=registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7:7.3.10-2
+ARG EAP_IMAGE=registry.redhat.io/jboss-eap-8/eap81-openjdk21-runtime-openshift-rhel9:latest
 ARG EAP_PLATFORM=linux/amd64
 
 FROM --platform=${EAP_PLATFORM} ${EAP_IMAGE}
