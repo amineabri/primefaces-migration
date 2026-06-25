@@ -1,6 +1,6 @@
 # PrimeFaces Home Office Sample
 
-Minimal Java EE web application for JBoss EAP 7.3.10.GA, JSF, Gradle, and PrimeFaces 6.2.30.
+Minimal Jakarta EE 10 web application for JBoss EAP 8.1, JSF, Gradle, and PrimeFaces 15.0.16.
 
 ## What Is Included
 
@@ -8,27 +8,29 @@ Minimal Java EE web application for JBoss EAP 7.3.10.GA, JSF, Gradle, and PrimeF
 - Gradle version catalog in `gradle/libs.versions.toml`
 - Optional local library directory for private JARs
 - JSF Facelets pages for Home, Dashboard, Employees, and Reports
-- Elements page demonstrating common PrimeFaces 6.2.30 components
+- Elements page demonstrating common PrimeFaces 15.0.16 components
 - Shared Facelets template with top navigation
 - CDI managed beans with static sample data
-- PrimeFaces 6.2.30 UI components
+- PrimeFaces 15.0.16 UI components
 - JBoss deployment descriptor
-- Dockerfile and docker-compose.yml for a JBoss EAP 7.3.10 container image
+- Dockerfile and docker-compose.yml for a JBoss EAP 8.1 container image
 
 No Spring Boot, Quarkus, authentication, authorization, database, JPA, REST API, messaging, monitoring, CI/CD, Kubernetes, or test framework is included.
 
 ## Prerequisites
 
-- Java 8
+- Java 21
 - Gradle wrapper included
 - Docker
-- Access to the Red Hat registry image `registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7:7.3.10-2`
-- Access to the PrimeFaces 6.2.30 artifact
+- Access to the Red Hat registry images:
+  - `registry.redhat.io/jboss-eap-8/eap81-openjdk21-builder-openshift-rhel9:latest`
+  - `registry.redhat.io/jboss-eap-8/eap81-openjdk21-runtime-openshift-rhel9:latest`
+- Access to the PrimeFaces 15.0.16 artifact
 
-PrimeFaces 6.2.30 is an Elite/PRO maintenance release and is not the public `6.2` artifact. The Gradle build resolves it in this order:
+PrimeFaces 15.0.16 Jakarta is a PRO release. The Gradle build resolves it in this order:
 
-- `libs/primefaces-6.2.30.jar`
-- `org.primefaces:primefaces:6.2.30` from the configured repositories
+- `libs/primefaces-15.0.16-jakarta.jar`
+- `org.primefaces:primefaces:15.0.16:jakarta` from the configured repositories
 
 Dependency versions are defined in `gradle/libs.versions.toml`.
 
@@ -52,7 +54,9 @@ Log in to the Red Hat registry if required:
 docker login registry.redhat.io
 ```
 
-The official Red Hat JBoss EAP 7.3.10 OpenJDK 8 image is published for `amd64`. On Apple Silicon or other ARM hosts, this project uses Docker Desktop emulation by explicitly setting the container platform to `linux/amd64`.
+The official Red Hat JBoss EAP 8.1 OpenJDK 21 images are published for `amd64`. On Apple Silicon or other ARM hosts, this project uses Docker Desktop emulation by explicitly setting the container platform to `linux/amd64`.
+
+The Dockerfile uses the Red Hat EAP 8.1 builder image to provision the server under `/opt/server`, then copies that provisioned server into the EAP 8.1 runtime image. This pairing is required because the runtime image is intentionally thin and expects `/opt/server` to already exist.
 
 Build the WAR first, then start the container:
 
@@ -82,12 +86,18 @@ Common commands are wrapped in the root `Makefile`:
 
 ```bash
 make help
-make assessment-publish
-make assessment-run
-make assessment-validate
-make migration-publish
-make migration-run
-make migration-validate
+make assessments-publish
+make assessments-run
+make assessments-validate
+make staged-publish
+make pf7-run
+make pf8-run
+make pf10-run
+make pf11-run
+make pf12-run
+make pf13-run
+make pf14-run
+make pf15-run
 ```
 
 ## Project Structure

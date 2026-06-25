@@ -1,0 +1,7 @@
+codeRepositoryPath: .
+transformationName: eap-primefaces-modernization-pf15
+buildCommand: ./gradlew clean build
+additionalPlanContext: |
+  Migrate PrimeFaces 14.0.0 to PrimeFaces 15.0.16 Jakarta and cut over to JBoss EAP 8.1, Jakarta EE 10, and Java 21.
+  Read aws-transform/eap-primefaces-modernization/reports/08-primefaces-15-jakarta-assessment.md if present.
+  Preserve all pages, root deployment, GOV.UK styling, and sample behavior.

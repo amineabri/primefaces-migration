@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/main.xhtml">
 
@@ -11,15 +11,13 @@
     <ui:define name="content">
         <section class="page-heading">
             <h1>Elements</h1>
-            <p>PrimeFaces 6.2.30 components grouped by common enterprise interface type.</p>
+            <p>PrimeFaces 15.0.16 components grouped by common enterprise interface type.</p>
         </section>
 
         <h:form id="elementsForm" enctype="multipart/form-data">
-            <p:growl id="growl" showDetail="true">
+            <p:messages id="messages" showDetail="true" closable="true">
                 <p:autoUpdate/>
-            </p:growl>
-
-            <p:messages id="messages" showDetail="true" closable="true"/>
+            </p:messages>
 
             <p:ajaxStatus styleClass="ajax-status">
                 <f:facet name="start">
@@ -52,9 +50,9 @@
                         </p:selectBooleanCheckbox>
 
                         <p:outputLabel for="reviewDate" value="Review date"/>
-                        <p:calendar id="reviewDate" value="#{elementsBean.reviewDate}" pattern="dd/MM/yyyy" showOn="button">
+                        <p:datePicker id="reviewDate" value="#{elementsBean.reviewDate}" pattern="dd/MM/yyyy" showIcon="true">
                             <p:ajax event="dateSelect" update="selectionSummary"/>
-                        </p:calendar>
+                        </p:datePicker>
 
                         <p:outputLabel for="priority" value="Priority"/>
                         <p:selectOneRadio id="priority" value="#{elementsBean.priority}">
@@ -93,11 +91,11 @@
                         <p:commandButton id="saveButton"
                                          value="Save and continue"
                                          actionListener="#{elementsBean.saveDemo}"
-                                         update="messages selectionSummary growl"/>
+                                         update="messages selectionSummary"/>
                         <p:commandButton id="resetButton"
                                          value="Reset"
                                          process="@this"
-                                         update="formPanel messages growl"
+                                         update="formPanel messages"
                                          actionListener="#{elementsBean.resetDemo}"
                                          styleClass="secondary-button">
                             <p:resetInput target="formPanel"/>
@@ -122,13 +120,13 @@
                         <p:button value="GOV.UK" href="https://www.gov.uk/" target="_blank" styleClass="secondary-button"/>
                         <p:commandLink value="Run command link"
                                        actionListener="#{elementsBean.linkAction}"
-                                       update="messages growl"/>
+                                       update="messages"/>
                     </div>
 
                     <p:commandButton id="confirmButton"
                                      value="Confirm action"
                                      actionListener="#{elementsBean.confirmedAction}"
-                                     update="messages growl"
+                                     update="messages"
                                      styleClass="warning-button">
                         <p:confirm header="Confirm action"
                                    message="Confirm this sample operation?"
@@ -141,22 +139,23 @@
                 <p:dataTable id="recordsTable"
                              value="#{elementsBean.records}"
                              var="record"
+                             rowKey="#{record.reference}"
                              styleClass="data-table"
                              paginator="true"
                              rows="4">
                     <p:column style="width:42px">
                         <p:rowToggler/>
                     </p:column>
-                    <p:column headerText="Reference" sortBy="#{record.reference}" filterBy="#{record.reference}" filterMatchMode="contains">
+                    <p:column headerText="Reference" sortBy="reference" filterBy="reference" filterMatchMode="contains">
                         #{record.reference}
                     </p:column>
-                    <p:column headerText="Service" sortBy="#{record.service}" filterBy="#{record.service}" filterMatchMode="contains">
+                    <p:column headerText="Service" sortBy="service" filterBy="service" filterMatchMode="contains">
                         #{record.service}
                     </p:column>
-                    <p:column headerText="Owner" sortBy="#{record.owner}" filterBy="#{record.owner}" filterMatchMode="contains">
+                    <p:column headerText="Owner" sortBy="owner" filterBy="owner" filterMatchMode="contains">
                         #{record.owner}
                     </p:column>
-                    <p:column headerText="Status" sortBy="#{record.status}">
+                    <p:column headerText="Status" sortBy="status">
                         <span class="status-pill">#{record.status}</span>
                     </p:column>
                     <p:rowExpansion>
@@ -198,9 +197,9 @@
                     </p:outputPanel>
 
                     <h3>Repeated departments</h3>
-                    <p:repeat value="#{elementsBean.departments}" var="departmentName">
+                    <ui:repeat value="#{elementsBean.departments}" var="departmentName">
                         <span class="tag">#{departmentName}</span>
-                    </p:repeat>
+                    </ui:repeat>
                 </p:panel>
 
                 <p:panel header="Upload And Progress" styleClass="content-panel">
@@ -210,13 +209,15 @@
 
                     <p:fileUpload id="fileUpload"
                                   mode="advanced"
-                                  dragDropSupport="false"
+                                  dragDrop="false"
                                   auto="true"
-                                  fileUploadListener="#{elementsBean.handleUpload}"
-                                  update="uploadStatus messages growl"
+                                  listener="#{elementsBean.handleUpload}"
+                                  update="uploadStatus messages"
                                   label="Choose file"
-                                  allowTypes="/(\.|\/)(txt|csv|pdf)$/"
-                                  sizeLimit="1048576"/>
+                                  accept=".txt,.csv,.pdf">
+                        <p:validateFile allowTypes="/(\.|\/)(txt|csv|pdf)$/"
+                                        sizeLimit="1048576"/>
+                    </p:fileUpload>
 
                     <p:outputPanel id="progressPanel" styleClass="progress-block">
                         <p:progressBar value="#{elementsBean.progress}" labelTemplate="{value}%"/>

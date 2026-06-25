@@ -6,8 +6,9 @@ services:
       platforms:
         - linux/amd64
       args:
-        EAP_IMAGE: registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7:7.3.10-2
+        EAP_BUILDER_IMAGE: registry.redhat.io/jboss-eap-8/eap81-openjdk21-builder-openshift-rhel9:latest
+        EAP_RUNTIME_IMAGE: registry.redhat.io/jboss-eap-8/eap81-openjdk21-runtime-openshift-rhel9:latest
         EAP_PLATFORM: linux/amd64
-    image: primefaces-homeoffice:eap-7.3.10
+    image: primefaces-homeoffice:eap-8.1
     ports:
       - "8080:8080"

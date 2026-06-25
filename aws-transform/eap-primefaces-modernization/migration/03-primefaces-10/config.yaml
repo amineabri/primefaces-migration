@@ -1,0 +1,9 @@
+codeRepositoryPath: .
+transformationName: eap-primefaces-modernization-pf10
+buildCommand: ./gradlew clean build
+additionalPlanContext: |
+  Migrate only PrimeFaces 8.0 to 10.0.0.
+  PrimeFaces does not have a normal public 9.x major stage in this migration path.
+  Do not update JBoss, Java, Jakarta, Docker, descriptors, Facelets namespaces, or javax.* imports.
+  Read aws-transform/eap-primefaces-modernization/reports/03-primefaces-10-assessment.md if present.
+  Preserve all pages and sample behavior.
