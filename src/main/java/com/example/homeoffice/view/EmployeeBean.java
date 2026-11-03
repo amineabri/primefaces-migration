@@ -3,19 +3,19 @@ package com.example.homeoffice.view;
 import com.example.homeoffice.model.Employee;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
-@ApplicationScoped
+@ViewScoped
 public class EmployeeBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final List<Employee> employees = Collections.unmodifiableList(Arrays.asList(
+    private final List<Employee> employees = new ArrayList<Employee>(Arrays.asList(
             new Employee("EMP-1001", "Aisha Khan", "Operations", "London", "Active"),
             new Employee("EMP-1002", "James Walker", "People Services", "Manchester", "Active"),
             new Employee("EMP-1003", "Priya Patel", "Finance", "Birmingham", "Active"),

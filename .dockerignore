@@ -1,3 +1,9 @@
 *
 !build/libs/primefaces-homeoffice.war
 !Dockerfile
+!operations/
+operations/*
+!operations/eap/
+operations/eap/*
+!operations/eap/configure.cli
+!operations/eap/healthcheck.sh

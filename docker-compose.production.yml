@@ -1,0 +1,14 @@
+name: primefaces-homeoffice-production
+
+services:
+  primefaces-homeoffice:
+    image: ${EAP_APPLICATION_IMAGE:?Set EAP_APPLICATION_IMAGE to the published application repository@sha256 digest}
+    platform: linux/amd64
+    restart: "no"
+    stop_grace_period: 60s
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "127.0.0.1:8080:8080"

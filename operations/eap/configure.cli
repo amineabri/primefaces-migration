@@ -1,0 +1,8 @@
+embed-server --server-config=standalone.xml --std-out=echo
+/subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=proxy-address-forwarding,value=true)
+/subsystem=undertow/servlet-container=default/setting=session-cookie:add(http-only=true,secure="${ops.session.cookie.secure:true}")
+/subsystem=undertow/servlet-container=default/setting=affinity-cookie:remove()
+/subsystem=undertow/configuration=filter/expression-filter=ops-samesite:add(expression="samesite-cookie(mode=Lax)")
+/subsystem=undertow/server=default-server/host=default-host/filter-ref=ops-samesite:add()
+/subsystem=health:write-attribute(name=security-enabled,value=false)
+stop-embedded-server

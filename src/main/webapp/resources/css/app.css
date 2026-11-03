@@ -102,7 +102,11 @@ select:focus,
 }
 
 .top-navigation.ui-menubar .ui-icon {
-    filter: brightness(0) invert(1);
+    filter: none;
+}
+
+.app-header .top-navigation.ui-menubar .ui-menuitem-link .ui-menuitem-icon {
+    color: #505a5f;
 }
 
 .content {

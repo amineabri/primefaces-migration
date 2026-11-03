@@ -6,8 +6,13 @@ services:
       platforms:
         - linux/amd64
       args:
-        EAP_IMAGE: registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7:7.3.10-2
         EAP_PLATFORM: linux/amd64
-    image: primefaces-homeoffice:eap-7.3.10
+    image: primefaces-homeoffice:eap-8.1-java21
+    restart: "no"
+    stop_grace_period: 60s
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"

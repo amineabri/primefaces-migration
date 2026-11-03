@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/main.xhtml">
 
@@ -108,12 +108,12 @@
                 <p:panel header="Navigation And Menu" styleClass="content-panel">
                     <p:menu styleClass="side-menu">
                         <p:submenu label="Sections">
-                            <p:menuitem value="Home" outcome="/home" icon="ui-icon-home"/>
-                            <p:menuitem value="Employees" outcome="/employees" icon="ui-icon-person"/>
+                            <p:menuitem value="Home" outcome="/home" icon="pi pi-home"/>
+                            <p:menuitem value="Employees" outcome="/employees" icon="pi pi-user"/>
                         </p:submenu>
                         <p:submenu label="Actions">
-                            <p:menuitem value="Refresh summary" update="selectionSummary messages" icon="ui-icon-refresh"/>
-                            <p:menuitem value="Open dialog" onclick="PF('elementDialog').show();return false;" icon="ui-icon-newwin"/>
+                            <p:menuitem value="Refresh summary" update="selectionSummary messages" icon="pi pi-refresh"/>
+                            <p:menuitem value="Open dialog" onclick="PF('elementDialog').show();return false;" icon="pi pi-external-link"/>
                         </p:submenu>
                     </p:menu>
 
@@ -132,7 +132,7 @@
                                      styleClass="warning-button">
                         <p:confirm header="Confirm action"
                                    message="Confirm this sample operation?"
-                                   icon="ui-icon-alert"/>
+                                   icon="pi pi-exclamation-triangle"/>
                     </p:commandButton>
                 </p:panel>
             </div>
@@ -141,6 +141,8 @@
                 <p:dataTable id="recordsTable"
                              value="#{elementsBean.records}"
                              var="record"
+                             rowKey="#{record.reference}"
+                             sortMode="single"
                              styleClass="data-table"
                              paginator="true"
                              rows="4">
@@ -170,10 +172,10 @@
                              value="#{elementsBean.records}"
                              var="record"
                              styleClass="hidden-export-table">
-                    <p:column headerText="Reference">#{record.reference}</p:column>
-                    <p:column headerText="Service">#{record.service}</p:column>
-                    <p:column headerText="Owner">#{record.owner}</p:column>
-                    <p:column headerText="Status">#{record.status}</p:column>
+                    <p:column headerText="Reference"><h:outputText value="#{record.reference}"/></p:column>
+                    <p:column headerText="Service"><h:outputText value="#{record.service}"/></p:column>
+                    <p:column headerText="Owner"><h:outputText value="#{record.owner}"/></p:column>
+                    <p:column headerText="Status"><h:outputText value="#{record.status}"/></p:column>
                 </p:dataTable>
 
                 <div class="action-row">
@@ -188,7 +190,7 @@
                     <p:outputLabel for="editor" value="Rich text note"/>
                     <p:textEditor id="editor"
                                   value="#{elementsBean.editorText}"
-                                  height="150"
+                                  height="150px"
                                   secure="false"
                                   placeholder="Enter a short service note"/>
 
@@ -198,9 +200,9 @@
                     </p:outputPanel>
 
                     <h3>Repeated departments</h3>
-                    <p:repeat value="#{elementsBean.departments}" var="departmentName">
+                    <ui:repeat value="#{elementsBean.departments}" var="departmentName">
                         <span class="tag">#{departmentName}</span>
-                    </p:repeat>
+                    </ui:repeat>
                 </p:panel>
 
                 <p:panel header="Upload And Progress" styleClass="content-panel">
@@ -210,13 +212,13 @@
 
                     <p:fileUpload id="fileUpload"
                                   mode="advanced"
-                                  dragDropSupport="false"
+                                  dragDrop="false"
                                   auto="true"
-                                  fileUploadListener="#{elementsBean.handleUpload}"
+                                  listener="#{elementsBean.handleUpload}"
                                   update="uploadStatus messages growl"
-                                  label="Choose file"
-                                  allowTypes="/(\.|\/)(txt|csv|pdf)$/"
-                                  sizeLimit="1048576"/>
+                                  label="Choose file">
+                        <p:validateFile allowTypes="/(\.|\/)(txt|csv|pdf)$/" sizeLimit="1048576"/>
+                    </p:fileUpload>
 
                     <p:outputPanel id="progressPanel" styleClass="progress-block">
                         <p:progressBar value="#{elementsBean.progress}" labelTemplate="{value}%"/>
@@ -235,6 +237,7 @@
                       widgetVar="elementDialog"
                       modal="true"
                       resizable="false"
+                      responsive="false"
                       width="420">
                 <p:outputPanel>
                     This dialog demonstrates a PrimeFaces dialog using the shared GOV.UK-style layout.

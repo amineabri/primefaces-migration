@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets"
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title><ui:insert name="title">PrimeFaces Home Office Sample</ui:insert></title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <h:outputStylesheet library="css" name="app.css"/>
+    <f:facet name="last">
+        <link rel="stylesheet" href="#{resource['css:app.css']}"/>
+    </f:facet>
 </h:head>
 
 <h:body>
@@ -23,11 +26,11 @@
 
             <h:form id="navigationForm">
                 <p:menubar styleClass="top-navigation">
-                    <p:menuitem value="Home" outcome="/home" icon="ui-icon-home"/>
-                    <p:menuitem value="Dashboard" outcome="/dashboard" icon="ui-icon-signal-diag"/>
-                    <p:menuitem value="Employees" outcome="/employees" icon="ui-icon-person"/>
-                    <p:menuitem value="Reports" outcome="/reports" icon="ui-icon-document"/>
-                    <p:menuitem value="Elements" outcome="/elements" icon="ui-icon-gear"/>
+                    <p:menuitem value="Home" outcome="/home" icon="pi pi-home"/>
+                    <p:menuitem value="Dashboard" outcome="/dashboard" icon="pi pi-chart-line"/>
+                    <p:menuitem value="Employees" outcome="/employees" icon="pi pi-user"/>
+                    <p:menuitem value="Reports" outcome="/reports" icon="pi pi-file"/>
+                    <p:menuitem value="Elements" outcome="/elements" icon="pi pi-cog"/>
                 </p:menubar>
             </h:form>
         </header>

@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 
 @Named
 @ApplicationScoped

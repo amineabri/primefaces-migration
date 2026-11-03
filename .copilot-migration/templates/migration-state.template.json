@@ -1,0 +1,107 @@
+{
+  "schema_version": "1",
+  "record_kind": "blank_initial_state",
+  "run": {
+    "id": null,
+    "root": null,
+    "project_name": null,
+    "created_at": null,
+    "updated_at": null,
+    "assessment_revision": null,
+    "repository_revision": null,
+    "dirty_scope_ref": null
+  },
+  "migration_started": false,
+  "current_phase_id": null,
+  "assessment_status": "NOT_STARTED",
+  "plan": {
+    "revision": null,
+    "path": null,
+    "approval": {
+      "status": "NOT_REQUESTED",
+      "owner": null,
+      "record_ref": null,
+      "scope": null,
+      "at": null
+    },
+    "approval_history": []
+  },
+  "context": {
+    "build_system": null,
+    "modules": [],
+    "source": {
+      "java": null,
+      "framework": null,
+      "platform": null,
+      "namespace": null,
+      "runtime": null,
+      "theme": null
+    },
+    "target": {
+      "java": null,
+      "framework": null,
+      "platform": null,
+      "namespace": null,
+      "runtime": null,
+      "theme": null,
+      "approval_ref": null
+    },
+    "commands": {
+      "build": null,
+      "tests": null,
+      "static": null,
+      "working_directories": []
+    },
+    "required_browsers": [],
+    "deployment_model": null,
+    "runtime_availability": "UNKNOWN",
+    "clustering_required": null,
+    "session_strategy": null,
+    "cutover_policy_ref": null
+  },
+  "artifact_paths": {
+    "assessment": null,
+    "findings": null,
+    "transformation_log": null,
+    "acceptance": null,
+    "operations": null,
+    "metrics": null
+  },
+  "baseline": {
+    "kind": "UNKNOWN",
+    "original_artifact_ref": null,
+    "reconstruction_approval_ref": null,
+    "equivalence": "NOT_ESTABLISHED",
+    "checkpoint_ref": null,
+    "preexisting_failure_refs": []
+  },
+  "phases": [],
+  "findings": [],
+  "blockers": [],
+  "risks": [],
+  "deferrals": [],
+  "checkpoints": [],
+  "evidence_manifests": [],
+  "summary": {
+    "build": "UNKNOWN",
+    "maintained_tests": {
+      "status": "UNKNOWN",
+      "discovered": null,
+      "executed": null,
+      "passed": null,
+      "failed": null,
+      "skipped": null,
+      "coverage_ref": null
+    },
+    "static_compatibility": "UNKNOWN",
+    "runtime_acceptance": "NOT_RUN",
+    "visual_acceptance": "NOT_RUN",
+    "browser_acceptance": "NOT_RUN",
+    "rollback": "UNKNOWN",
+    "application_migration": "NOT_STARTED",
+    "production_readiness": "NOT_ASSESSED",
+    "go_live_readiness": "NOT_ASSESSED",
+    "current_evidence_refs": []
+  },
+  "history": []
+}

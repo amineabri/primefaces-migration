@@ -1,0 +1,156 @@
+{
+  "manifest_version": "1.0",
+  "assessment": "AWS Transform-style modernization assessment",
+  "repository": "amineabri/primefaces-migration",
+  "assessment_date": "2026-10-27",
+  "generated_at": "2026-10-27T12:52:21Z",
+  "status": "ASSESSMENT COMPLETE",
+  "migration_started": false,
+  "entry_point": "assessment-report.md",
+  "canonical_machine_readable_data": "assessment.json",
+  "finding_count": 14,
+  "project_count": 1,
+  "application_loc": {
+    "java": 571,
+    "webapp": 951,
+    "total": 1522,
+    "count_method": "Physical lines including blank/comment lines"
+  },
+  "effort_summary": {
+    "engineering_hours": {
+      "best": 25.5,
+      "most_likely": 38.5,
+      "high_risk": 59
+    },
+    "engineering_days_at_7_5_hours": {
+      "best": 3.4,
+      "most_likely": 5.1,
+      "high_risk": 7.9
+    },
+    "agent_execution_minutes": {
+      "best": 121,
+      "most_likely": 196,
+      "high_risk": 312
+    },
+    "calendar_business_days": {
+      "best": 10,
+      "most_likely": 12,
+      "high_risk": 18
+    }
+  },
+  "original_aws_transform_output_inventory": {
+    "reports": [
+      "aws-transform/eap-primefaces-modernization/reports/01-primefaces-7-assessment.md",
+      "aws-transform/eap-primefaces-modernization/reports/02-primefaces-8-assessment.md",
+      "aws-transform/eap-primefaces-modernization/reports/03-primefaces-10-assessment.md",
+      "aws-transform/eap-primefaces-modernization/reports/04-primefaces-11-assessment.md",
+      "aws-transform/eap-primefaces-modernization/reports/05-primefaces-12-assessment.md",
+      "aws-transform/eap-primefaces-modernization/reports/06-primefaces-13-assessment.md",
+      "aws-transform/eap-primefaces-modernization/reports/07-primefaces-14-assessment.md",
+      "aws-transform/eap-primefaces-modernization/reports/08-primefaces-15-jakarta-assessment.md",
+      "aws-transform/eap-primefaces-modernization/reports/product-delivery-assessment.md"
+    ],
+    "workflow_assets_inventory": "docs/modernization/assessment/aws-transform-artifact-inventory.md",
+    "workflow_and_support_file_count": 39,
+    "additional_generated_formats_found": [],
+    "note": "Assessment and migration definitions/configuration files exist but are workflow inputs, not generated report output. No original HTML, JSON, CSV, XLSX, logs or execution metadata were found."
+  },
+  "artifacts": [
+    {
+      "path": "docs/modernization/assessment/assessment-report.md",
+      "purpose": "Primary detailed repository, compatibility, risk, readiness and strategy report",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Narrative entry point; references all supporting reports."
+    },
+    {
+      "path": "docs/modernization/assessment/project-analysis.md",
+      "purpose": "Project/module inventory, project stack and size analysis",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "One project; agrees with assessment.json project inventory."
+    },
+    {
+      "path": "docs/modernization/assessment/findings.md",
+      "purpose": "Canonical detailed finding descriptions",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Finding IDs ATX-FIND-001 through ATX-FIND-014 match assessment.json and findings.csv."
+    },
+    {
+      "path": "docs/modernization/assessment/dependency-compatibility.md",
+      "purpose": "Dependency compatibility statuses, replacements and evidence",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Canonical dependency rows match assessment.json and dependencies.csv."
+    },
+    {
+      "path": "docs/modernization/assessment/api-compatibility.md",
+      "purpose": "Source API and namespace compatibility locations",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Maps source API concerns to canonical finding IDs."
+    },
+    {
+      "path": "docs/modernization/assessment/jakarta-migration.md",
+      "purpose": "Jakarta namespace, descriptor and API conversion analysis",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Detailed treatment of ATX-FIND-003, 004, 005 and Jakarta aspects of 006/007."
+    },
+    {
+      "path": "docs/modernization/assessment/primefaces-migration-matrix.md",
+      "purpose": "Repository-specific staged PrimeFaces matrix and gates",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Eight transitions; findings link to canonical register."
+    },
+    {
+      "path": "docs/modernization/assessment/eap-target-analysis.md",
+      "purpose": "EAP 8.1, Java 21, image, descriptor and deployment assessment",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Details application-server/deployment findings."
+    },
+    {
+      "path": "docs/modernization/assessment/effort-estimate.md",
+      "purpose": "Engineering, agent execution and calendar effort estimates",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Detailed estimates agree with assessment.json and manifest totals."
+    },
+    {
+      "path": "docs/modernization/assessment/migration-readiness.md",
+      "purpose": "Overall/project/technology readiness, blockers and gates",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Readiness decisions and prerequisites supporting transformation plan."
+    },
+    {
+      "path": "docs/modernization/assessment/transformation-plan.md",
+      "purpose": "Stage-by-stage AWS Transform-style proposed transformation plan",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "References valid finding IDs and specified stage order; execution is not authorized by this document."
+    },
+    {
+      "path": "docs/modernization/assessment/assessment.json",
+      "purpose": "Machine-readable assessment source for a future migration agent",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Canonical structured findings, dependencies, APIs, blockers, risks, effort, stages and validation gates."
+    },
+    {
+      "path": "docs/modernization/assessment/findings.csv",
+      "purpose": "Tabular export of canonical findings",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Same 14 finding IDs and canonical fields as findings.md and assessment.json."
+    },
+    {
+      "path": "docs/modernization/assessment/dependencies.csv",
+      "purpose": "Tabular export of dependency compatibility",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Same 15 dependencies/statuses/actions as dependency-compatibility.md and assessment.json."
+    },
+    {
+      "path": "docs/modernization/assessment/manifest.json",
+      "purpose": "Assessment deliverable inventory and migration-agent entry point",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Lists every generated artefact, relationship, inventory and aggregate."
+    },
+    {
+      "path": "docs/modernization/assessment/aws-transform-artifact-inventory.md",
+      "purpose": "Inventory of all 49 AWS Transform repository files, separating prior output reports from workflow inputs",
+      "generated_at": "2026-10-27T12:52:21Z",
+      "relationship": "Names the nine prior Markdown reports and groups all 39 workflow/support files; referenced by the primary report and assessment.json."
+    }
+  ]
+}

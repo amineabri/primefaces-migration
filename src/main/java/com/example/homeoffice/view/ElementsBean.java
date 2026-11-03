@@ -2,7 +2,7 @@ package com.example.homeoffice.view;
 
 import com.example.homeoffice.model.ElementRecord;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.model.file.UploadedFile;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,10 +10,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Named;
 
 @Named
 @SessionScoped
@@ -21,7 +21,7 @@ public class ElementsBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final List<ElementRecord> records = Collections.unmodifiableList(Arrays.asList(
+    private final List<ElementRecord> records = new ArrayList<ElementRecord>(Arrays.asList(
             new ElementRecord("EL-001", "Passport operations", "Operations", "Active", "Daily casework review for document processing."),
             new ElementRecord("EL-002", "People services", "People Services", "Ready", "Internal staffing summary prepared for line managers."),
             new ElementRecord("EL-003", "Finance checks", "Finance", "Pending", "Budget validation queue awaiting review."),

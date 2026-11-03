@@ -1,0 +1,2414 @@
+{
+  "schema_version": 1,
+  "scope": "Current-lineage modernization framework/assessment through persisted OPS-03 checkpoint; excludes alternate June implementation branch and this metrics task",
+  "status": {
+    "migration": "COMPLETE",
+    "application_runtime_validation": "COMPLETE for executed acceptance scope",
+    "operational_production_readiness": "NOT YET COMPLETE",
+    "go_live": "NOT READY - OPERATIONAL BLOCKERS REMAIN",
+    "rollback": "BLOCKED"
+  },
+  "validated_image": "ghcr.io/amineabri/primefaces-migration@sha256:63126aa490725adbcf1f02170a251f1d0b949ddaeb6b2c574712c4d864a003fe",
+  "baseline_sha": "6a5f7bb66e2da8e529023740e83fb9d2b2067707",
+  "head_sha": "bc7ca9c1d9630f2a323096237e8079bdc9448670",
+  "pre_october_fork_sha": "056a3bb7f7dc35daddf74d5c710af92b767bdaae",
+  "start_timestamp": "2026-06-24T11:34:49.000Z",
+  "end_timestamp": "2026-10-28T00:24:11.000Z",
+  "completion_endpoint_definition": "Persisted OPS-03 snapshot; actual final response is separately recorded.",
+  "calendar_elapsed_seconds": 10846162.0,
+  "ops03_final_response_at": "2026-10-28T00:17:15.870Z",
+  "controlled_assessment_start": "2026-10-27T12:38:46.562Z",
+  "controlled_calendar_to_final_response_seconds": 41909.308,
+  "controlled_calendar_to_checkpoint_seconds": 42324.438,
+  "estimated_active_seconds": 40264.153,
+  "estimated_october_active_seconds": 32016.153,
+  "session_count": 4,
+  "average_session_seconds": 10066.03825,
+  "longest_session_seconds": 20534.722,
+  "methodology": {
+    "label": "ESTIMATED ACTIVE ENGINEERING TIME",
+    "not_timesheet_data": true,
+    "max_consecutive_gap_seconds": 2700,
+    "terminal_activity_allowance_seconds": 600,
+    "event_selection": "Current-lineage commits plus main user requests, tool starts/completions, final assistant responses through the persisted OPS-03 checkpoint; excludes duplicate research requests and bookkeeping.",
+    "event_counts_excluding_commits": {
+      "user.message": 24,
+      "tool.execution_start": 1056,
+      "tool.execution_complete": 1056,
+      "assistant.message": 27
+    },
+    "selected_event_count": 2188,
+    "selected_events_canonical_json_sha256": "f27f0abfa98f1aa3e53b891f1b637a56a4f58f2637a4af61d24d954246663f25",
+    "concurrency_policy": "Wall-clock clustered spans; do not sum overlapping tool durations as person-hours.",
+    "waiting_policy": "Exclude >45 minute inter-session gaps; short unmeasured waits may remain inside sessions; reasons UNKNOWN.",
+    "last_allowance_after_cutoff_is_synthetic": true
+  },
+  "sessions": [
+    {
+      "id": "S01",
+      "start": "2026-06-24T11:34:49.000Z",
+      "last_event": "2026-06-24T13:42:17.000Z",
+      "allowance_seconds": 600,
+      "estimated_end": "2026-06-24T13:52:17.000Z",
+      "observed_span_seconds": 7648.0,
+      "estimated_active_seconds": 8248.0,
+      "event_count": 19,
+      "phases": [
+        "Assessment / migration framework"
+      ],
+      "commits": [
+        "b4bccb1a929b59cbab51cbaab019e919c4f4db40",
+        "dea0743e05b89687a61c261f485751f186f71140",
+        "f02e7219430e50318f839ce783e6c4bc6f251c3d",
+        "796c4dd8db68a3587840a0d011e791100675f17c",
+        "6479c65616a84f4878b493fd642b0901203e4c09",
+        "dd38aa8c58e71dbc6a9ac0b3a2a0ab86855fcebf",
+        "4b31b6e3985cb3639aef720f3c0cd9e4e289cb1c",
+        "3d19ed054a9df2886900c60cc9166d99824fb434",
+        "2a616fccd57341921011adfa778c36d41ea3b833",
+        "da57aa87c3a9ad90cea8dbb3b9be31bd9e173332",
+        "fc52a958ff4eb2b9d6e96c1ef06c21248136e30d",
+        "bd47eb5ead902269b69ed1c8542185716a490668",
+        "f9a09919bd03251982330e528756bbec2a3ac4cc",
+        "970915f97d6af9911392f1de4ba35baf2288193c",
+        "5d003719e3a5a74c3c30cd4435e70a42bcda9cc5",
+        "f2f904347e7335d3c0a8169b28e341dd849fc3d5",
+        "94e67eb52d138edefd37ea643fd7465f4ac614cb",
+        "9b41b10d329aa178d53d9592f714f0a169c6161c",
+        "056a3bb7f7dc35daddf74d5c710af92b767bdaae"
+      ],
+      "confidence": "LOW"
+    },
+    {
+      "id": "S02",
+      "start": "2026-10-27T12:38:46.562Z",
+      "last_event": "2026-10-27T13:09:04.453Z",
+      "allowance_seconds": 600,
+      "estimated_end": "2026-10-27T13:19:04.453Z",
+      "observed_span_seconds": 1817.891,
+      "estimated_active_seconds": 2417.891,
+      "event_count": 210,
+      "phases": [
+        "Assessment / migration framework"
+      ],
+      "commits": [],
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "S03",
+      "start": "2026-10-27T15:39:23.000Z",
+      "last_event": "2026-10-27T21:11:37.722Z",
+      "allowance_seconds": 600,
+      "estimated_end": "2026-10-27T21:21:37.722Z",
+      "observed_span_seconds": 19934.722,
+      "estimated_active_seconds": 20534.722,
+      "event_count": 1510,
+      "phases": [
+        "Assessment / migration framework",
+        "MIG-00",
+        "MIG-01",
+        "MIG-02",
+        "MIG-03",
+        "MIG-04",
+        "MIG-05",
+        "MIG-06",
+        "MIG-07",
+        "MIG-08",
+        "MIG-09"
+      ],
+      "commits": [
+        "03d08b94b33af101ca36cd1cf2f004e0ff153309",
+        "83b075f38cbb6b1d2722a8c96a8241070ada3f4a",
+        "84b34d4fd1b8fedaab6f2c20289802789bcb9cbd",
+        "b254429990b48e414914769217a3fd94daeb46ed"
+      ],
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "S04",
+      "start": "2026-10-27T22:03:07.460Z",
+      "last_event": "2026-10-28T00:24:11.000Z",
+      "allowance_seconds": 600,
+      "estimated_end": "2026-10-28T00:34:11.000Z",
+      "observed_span_seconds": 8463.54,
+      "estimated_active_seconds": 9063.54,
+      "event_count": 449,
+      "phases": [
+        "MIG-09",
+        "OPS-01",
+        "OPS-02",
+        "OPS-03"
+      ],
+      "commits": [
+        "de1def51101302f11d08fa1a38412377ddfb8d79",
+        "bc7ca9c1d9630f2a323096237e8079bdc9448670"
+      ],
+      "confidence": "MEDIUM"
+    }
+  ],
+  "git_only_sensitivity": {
+    "estimated_active_seconds": 12746.0,
+    "session_count": 5,
+    "confidence": "LOW",
+    "sessions": [
+      {
+        "start": "2026-06-24T11:34:49.000Z",
+        "last_event": "2026-06-24T13:42:17.000Z",
+        "commits": [
+          "b4bccb1a929b59cbab51cbaab019e919c4f4db40",
+          "dea0743e05b89687a61c261f485751f186f71140",
+          "f02e7219430e50318f839ce783e6c4bc6f251c3d",
+          "796c4dd8db68a3587840a0d011e791100675f17c",
+          "6479c65616a84f4878b493fd642b0901203e4c09",
+          "dd38aa8c58e71dbc6a9ac0b3a2a0ab86855fcebf",
+          "4b31b6e3985cb3639aef720f3c0cd9e4e289cb1c",
+          "3d19ed054a9df2886900c60cc9166d99824fb434",
+          "2a616fccd57341921011adfa778c36d41ea3b833",
+          "da57aa87c3a9ad90cea8dbb3b9be31bd9e173332",
+          "fc52a958ff4eb2b9d6e96c1ef06c21248136e30d",
+          "bd47eb5ead902269b69ed1c8542185716a490668",
+          "f9a09919bd03251982330e528756bbec2a3ac4cc",
+          "970915f97d6af9911392f1de4ba35baf2288193c",
+          "5d003719e3a5a74c3c30cd4435e70a42bcda9cc5",
+          "f2f904347e7335d3c0a8169b28e341dd849fc3d5",
+          "94e67eb52d138edefd37ea643fd7465f4ac614cb",
+          "9b41b10d329aa178d53d9592f714f0a169c6161c",
+          "056a3bb7f7dc35daddf74d5c710af92b767bdaae"
+        ],
+        "estimated_active_seconds": 8248.0
+      },
+      {
+        "start": "2026-10-27T15:39:23.000Z",
+        "last_event": "2026-10-27T16:14:21.000Z",
+        "commits": [
+          "03d08b94b33af101ca36cd1cf2f004e0ff153309",
+          "83b075f38cbb6b1d2722a8c96a8241070ada3f4a",
+          "84b34d4fd1b8fedaab6f2c20289802789bcb9cbd"
+        ],
+        "estimated_active_seconds": 2698.0
+      },
+      {
+        "start": "2026-10-27T18:28:09.000Z",
+        "last_event": "2026-10-27T18:28:09.000Z",
+        "commits": [
+          "b254429990b48e414914769217a3fd94daeb46ed"
+        ],
+        "estimated_active_seconds": 600.0
+      },
+      {
+        "start": "2026-10-27T22:17:42.000Z",
+        "last_event": "2026-10-27T22:17:42.000Z",
+        "commits": [
+          "de1def51101302f11d08fa1a38412377ddfb8d79"
+        ],
+        "estimated_active_seconds": 600.0
+      },
+      {
+        "start": "2026-10-28T00:24:11.000Z",
+        "last_event": "2026-10-28T00:24:11.000Z",
+        "commits": [
+          "bc7ca9c1d9630f2a323096237e8079bdc9448670"
+        ],
+        "estimated_active_seconds": 600.0
+      }
+    ]
+  },
+  "all_history_sensitivity": {
+    "scope": "Primary activity plus nine alternative June implementation commits and the integration merge event; merge adds no primary code churn.",
+    "estimated_active_seconds": 46151.153,
+    "session_count": 6,
+    "confidence": "LOW",
+    "sessions": [
+      {
+        "start": "2026-06-24T11:34:49.000Z",
+        "last_event": "2026-06-24T13:42:17.000Z",
+        "estimated_active_seconds": 8248.0
+      },
+      {
+        "start": "2026-06-24T18:30:33.000Z",
+        "last_event": "2026-06-24T19:48:40.000Z",
+        "estimated_active_seconds": 5287.0
+      },
+      {
+        "start": "2026-06-25T11:29:01.000Z",
+        "last_event": "2026-06-25T11:29:01.000Z",
+        "estimated_active_seconds": 600.0
+      },
+      {
+        "start": "2026-10-27T12:38:46.562Z",
+        "last_event": "2026-10-27T13:09:04.453Z",
+        "estimated_active_seconds": 2417.891
+      },
+      {
+        "start": "2026-10-27T15:39:23.000Z",
+        "last_event": "2026-10-27T21:11:37.722Z",
+        "estimated_active_seconds": 20534.722
+      },
+      {
+        "start": "2026-10-27T22:03:07.460Z",
+        "last_event": "2026-10-28T00:24:11.000Z",
+        "estimated_active_seconds": 9063.54
+      }
+    ]
+  },
+  "phase_metrics": [
+    {
+      "phase": "Assessment / migration framework",
+      "first_observed": "2026-06-24T11:34:49Z",
+      "last_observed": "2026-10-27T17:20:37.913Z",
+      "observed_span_seconds": 10820748.913,
+      "work_intervals": [
+        {
+          "start": "2026-06-24T11:34:49Z",
+          "end": "2026-06-24T13:42:17Z"
+        },
+        {
+          "start": "2026-10-27T12:38:46.562Z",
+          "end": "2026-10-27T13:09:04.453Z"
+        },
+        {
+          "start": "2026-10-27T15:40:34.918Z",
+          "end": "2026-10-27T15:45:01.714Z"
+        },
+        {
+          "start": "2026-10-27T17:07:03.023Z",
+          "end": "2026-10-27T17:20:37.913Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "b4bccb1a929b59cbab51cbaab019e919c4f4db40",
+        "dea0743e05b89687a61c261f485751f186f71140",
+        "f02e7219430e50318f839ce783e6c4bc6f251c3d",
+        "796c4dd8db68a3587840a0d011e791100675f17c",
+        "6479c65616a84f4878b493fd642b0901203e4c09",
+        "dd38aa8c58e71dbc6a9ac0b3a2a0ab86855fcebf",
+        "4b31b6e3985cb3639aef720f3c0cd9e4e289cb1c",
+        "3d19ed054a9df2886900c60cc9166d99824fb434",
+        "2a616fccd57341921011adfa778c36d41ea3b833",
+        "da57aa87c3a9ad90cea8dbb3b9be31bd9e173332",
+        "fc52a958ff4eb2b9d6e96c1ef06c21248136e30d",
+        "bd47eb5ead902269b69ed1c8542185716a490668",
+        "f9a09919bd03251982330e528756bbec2a3ac4cc",
+        "970915f97d6af9911392f1de4ba35baf2288193c",
+        "5d003719e3a5a74c3c30cd4435e70a42bcda9cc5",
+        "f2f904347e7335d3c0a8169b28e341dd849fc3d5",
+        "94e67eb52d138edefd37ea643fd7465f4ac614cb",
+        "9b41b10d329aa178d53d9592f714f0a169c6161c",
+        "056a3bb7f7dc35daddf74d5c710af92b767bdaae",
+        "03d08b94b33af101ca36cd1cf2f004e0ff153309",
+        "83b075f38cbb6b1d2722a8c96a8241070ada3f4a",
+        "b254429990b48e414914769217a3fd94daeb46ed"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "Framework, assessments and gated transformation plan; no migration in assessment.",
+      "active_effort_seconds": null,
+      "file_surfaces": [
+        ".aws/atx/skills/eap-primefaces-modernization/",
+        "aws-transform/eap-primefaces-modernization/",
+        ".github/",
+        "Makefile",
+        "docs/modernization/assessment/",
+        "docs/modernization/migration/migration-runbook.md",
+        "docs/modernization/migration/theme-browser-gates.md"
+      ],
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-00",
+      "first_observed": "2026-10-27T16:03:18.722Z",
+      "last_observed": "2026-10-27T16:47:48.423Z",
+      "observed_span_seconds": 2669.701,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T16:03:18.722Z",
+          "end": "2026-10-27T16:47:48.423Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "84b34d4fd1b8fedaab6f2c20289802789bcb9cbd",
+        "b254429990b48e414914769217a3fd94daeb46ed"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "Original private 6.2.30 unavailable; approved public 6.2 reconstructed baseline build PASS.",
+      "active_effort_seconds": null,
+      "file_surfaces": [
+        "gradle/libs.versions.toml",
+        "build.gradle",
+        "libs/README.md",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/transformation-log.md"
+      ],
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-01",
+      "first_observed": "2026-10-27T16:47:48.423Z",
+      "last_observed": "2026-10-27T16:50:29.474Z",
+      "observed_span_seconds": 161.051,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T16:47:48.423Z",
+          "end": "2026-10-27T16:50:29.474Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "b254429990b48e414914769217a3fd94daeb46ed"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "PF7 build/static PASS; runtime deferred; test NO-SOURCE.",
+      "active_effort_seconds": null,
+      "recorded_files_changed": [
+        "gradle/libs.versions.toml",
+        "build.gradle",
+        "libs/README.md",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/transformation-log.md"
+      ],
+      "recorded_build_result": "PASS",
+      "recorded_test_result": "NONE \u2014 AUTOMATED TEST COVERAGE UNAVAILABLE; Gradle test NO-SOURCE",
+      "files_evidence": "migration-state.json:mig01_validation",
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-02",
+      "first_observed": "2026-10-27T16:52:45.655Z",
+      "last_observed": "2026-10-27T16:55:05.250Z",
+      "observed_span_seconds": 139.595,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T16:52:45.655Z",
+          "end": "2026-10-27T16:55:05.250Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "b254429990b48e414914769217a3fd94daeb46ed"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "PF8 upload API/listener migration; build/static PASS; runtime deferred; test NO-SOURCE.",
+      "active_effort_seconds": null,
+      "recorded_files_changed": [
+        "gradle/libs.versions.toml",
+        "build.gradle",
+        "libs/README.md",
+        "src/main/java/com/example/homeoffice/view/ElementsBean.java",
+        "src/main/webapp/elements.xhtml",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/transformation-log.md"
+      ],
+      "recorded_build_result": "PASS",
+      "recorded_test_result": "NONE \u2014 AUTOMATED TEST COVERAGE UNAVAILABLE; independent Gradle test NO-SOURCE; all test counts zero",
+      "files_evidence": "migration-state.json:mig02_validation",
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-03",
+      "first_observed": "2026-10-27T16:56:33.651Z",
+      "last_observed": "2026-10-27T17:01:46.774Z",
+      "observed_span_seconds": 313.123,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T16:56:33.651Z",
+          "end": "2026-10-27T17:01:46.774Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "b254429990b48e414914769217a3fd94daeb46ed"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "PF10 table compatibility; build/static PASS; runtime deferred; test NO-SOURCE.",
+      "active_effort_seconds": null,
+      "recorded_files_changed": [
+        "gradle/libs.versions.toml",
+        "build.gradle",
+        "libs/README.md",
+        "src/main/webapp/elements.xhtml",
+        "src/main/webapp/employees.xhtml",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/transformation-log.md"
+      ],
+      "recorded_build_result": "PASS",
+      "recorded_test_result": "NONE \u2014 AUTOMATED BEHAVIORAL TEST COVERAGE UNAVAILABLE; independent Gradle test NO-SOURCE; all test counts zero",
+      "files_evidence": "migration-state.json:mig03_validation",
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-04",
+      "first_observed": "2026-10-27T17:31:26.778Z",
+      "last_observed": "2026-10-27T17:43:37.645Z",
+      "observed_span_seconds": 730.867,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T17:31:26.778Z",
+          "end": "2026-10-27T17:43:37.645Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "b254429990b48e414914769217a3fd94daeb46ed"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "PF11 approved Saga transition; build/static PASS; runtime/visual deferred; test NO-SOURCE.",
+      "active_effort_seconds": null,
+      "recorded_files_changed": [
+        "gradle/libs.versions.toml",
+        "build.gradle",
+        "libs/README.md",
+        "src/main/webapp/elements.xhtml",
+        "src/main/webapp/WEB-INF/web.xml",
+        "src/main/webapp/WEB-INF/templates/main.xhtml",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/transformation-log.md",
+        "docs/modernization/migration/theme-browser-gates.md",
+        "docs/modernization/migration/migration-runbook.md",
+        "docs/modernization/assessment/transformation-plan.md",
+        "docs/modernization/assessment/primefaces-migration-matrix.md",
+        ".github/agents/aws-transform-migrator.agent.md",
+        ".github/instructions/aws-transform-migration.instructions.md",
+        ".github/prompts/aws-transform-migrate.prompt.md"
+      ],
+      "recorded_build_result": "PASS",
+      "recorded_test_result": "NONE \u2014 AUTOMATED BEHAVIORAL TEST COVERAGE UNAVAILABLE; test NO-SOURCE",
+      "files_evidence": "migration-state.json:mig04_validation",
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-05",
+      "first_observed": "2026-10-27T17:57:44.142Z",
+      "last_observed": "2026-10-27T18:02:11.949Z",
+      "observed_span_seconds": 267.807,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T17:57:44.142Z",
+          "end": "2026-10-27T18:02:11.949Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "b254429990b48e414914769217a3fd94daeb46ed"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "PF12 build/static PASS; runtime deferred; test NO-SOURCE.",
+      "active_effort_seconds": null,
+      "recorded_files_changed": [
+        "gradle/libs.versions.toml",
+        "build.gradle",
+        "libs/README.md",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/transformation-log.md",
+        "docs/modernization/migration/migration-runbook.md",
+        "docs/modernization/migration/theme-browser-gates.md",
+        "docs/modernization/assessment/primefaces-migration-matrix.md"
+      ],
+      "recorded_build_result": "PASS",
+      "recorded_test_result": "NONE \u2014 AUTOMATED BEHAVIORAL TEST COVERAGE UNAVAILABLE; test NO-SOURCE, zero tests executed",
+      "files_evidence": "migration-state.json:mig05_validation",
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-06",
+      "first_observed": "2026-10-27T18:04:16.697Z",
+      "last_observed": "2026-10-27T18:25:36.042Z",
+      "observed_span_seconds": 1279.345,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T18:04:16.697Z",
+          "end": "2026-10-27T18:25:36.042Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "b254429990b48e414914769217a3fd94daeb46ed"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "PF13 repeat/editor changes and explicit IE decision; build/static PASS; runtime deferred.",
+      "active_effort_seconds": null,
+      "recorded_files_changed": [
+        "gradle/libs.versions.toml",
+        "build.gradle",
+        "libs/README.md",
+        "src/main/webapp/elements.xhtml",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/transformation-log.md",
+        "docs/modernization/migration/migration-runbook.md",
+        "docs/modernization/migration/theme-browser-gates.md",
+        "docs/modernization/assessment/primefaces-migration-matrix.md",
+        ".github/agents/aws-transform-migrator.agent.md",
+        ".github/instructions/aws-transform-migration.instructions.md"
+      ],
+      "recorded_build_result": "PASS",
+      "recorded_test_result": "NONE \u2014 AUTOMATED BEHAVIORAL TEST COVERAGE UNAVAILABLE; test NO-SOURCE, zero tests executed",
+      "files_evidence": "migration-state.json:mig06_validation",
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-07",
+      "first_observed": "2026-10-27T18:29:28.158Z",
+      "last_observed": "2026-10-27T18:47:00.093Z",
+      "observed_span_seconds": 1051.935,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T18:29:28.158Z",
+          "end": "2026-10-27T18:47:00.093Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "de1def51101302f11d08fa1a38412377ddfb8d79"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "PF14 and Java11 compilation PASS; actual intermediate runtime deferred.",
+      "active_effort_seconds": null,
+      "recorded_files_changed": [
+        "gradle/libs.versions.toml",
+        "build.gradle",
+        "Dockerfile",
+        "docker-compose.yml",
+        "README.md",
+        "libs/README.md",
+        "aws-transform/eap-primefaces-modernization/migration/07-primefaces-14/definition/transformation_definition.md",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/transformation-log.md",
+        "docs/modernization/migration/migration-runbook.md",
+        "docs/modernization/migration/theme-browser-gates.md",
+        "docs/modernization/assessment/primefaces-migration-matrix.md",
+        "docs/modernization/assessment/transformation-plan.md",
+        ".github/instructions/aws-transform-migration.instructions.md"
+      ],
+      "recorded_build_result": "PASS \u2014 ./gradlew clean build --console=plain, Java11 compilation and WAR",
+      "recorded_test_result": "NONE \u2014 independent ./gradlew test --console=plain test NO-SOURCE; AUTOMATED BEHAVIORAL TEST COVERAGE UNAVAILABLE",
+      "files_evidence": "migration-state.json:mig07_validation",
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-08",
+      "first_observed": "2026-10-27T18:48:15.791Z",
+      "last_observed": "2026-10-27T19:06:25.197Z",
+      "observed_span_seconds": 1089.406,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T18:48:15.791Z",
+          "end": "2026-10-27T19:06:25.197Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "de1def51101302f11d08fa1a38412377ddfb8d79"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "Jakarta EE10/PF15/Java21 ordered gates: A two failures, B-F PASS; runtime deferred.",
+      "active_effort_seconds": null,
+      "recorded_files_changed": [
+        ".aws/atx/skills/eap-primefaces-modernization/scripts/validate-modernized.sh",
+        ".github/agents/aws-transform-migrator.agent.md",
+        ".github/instructions/aws-transform-migration.instructions.md",
+        ".github/prompts/aws-transform-migrate.prompt.md",
+        "Dockerfile",
+        "README.md",
+        "aws-transform/eap-primefaces-modernization/migration/08-primefaces-15-jakarta/definition/transformation_definition.md",
+        "build.gradle",
+        "docker-compose.yml",
+        "docs/modernization/assessment/eap-target-analysis.md",
+        "docs/modernization/assessment/jakarta-migration.md",
+        "docs/modernization/assessment/primefaces-migration-matrix.md",
+        "docs/modernization/assessment/transformation-plan.md",
+        "docs/modernization/migration/migration-runbook.md",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/theme-browser-gates.md",
+        "docs/modernization/migration/transformation-log.md",
+        "gradle/libs.versions.toml",
+        "libs/README.md",
+        "settings.gradle",
+        "src/main/java/com/example/homeoffice/view/DashboardBean.java",
+        "src/main/java/com/example/homeoffice/view/ElementsBean.java",
+        "src/main/java/com/example/homeoffice/view/EmployeeBean.java",
+        "src/main/java/com/example/homeoffice/view/HomeBean.java",
+        "src/main/java/com/example/homeoffice/view/ReportsBean.java",
+        "src/main/webapp/WEB-INF/beans.xml",
+        "src/main/webapp/WEB-INF/templates/main.xhtml",
+        "src/main/webapp/WEB-INF/web.xml",
+        "src/main/webapp/dashboard.xhtml",
+        "src/main/webapp/elements.xhtml",
+        "src/main/webapp/employees.xhtml",
+        "src/main/webapp/home.xhtml",
+        "src/main/webapp/reports.xhtml"
+      ],
+      "recorded_build_result": "PASS",
+      "recorded_test_result": "NONE \u2014 AUTOMATED BEHAVIORAL TEST COVERAGE UNAVAILABLE",
+      "files_evidence": "migration-state.json:mig08_validation",
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "MIG-09",
+      "first_observed": "2026-10-27T19:07:56.628Z",
+      "last_observed": "2026-10-27T22:51:58.848Z",
+      "observed_span_seconds": 13442.22,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T19:07:56.628Z",
+          "end": "2026-10-27T22:51:58.848Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "de1def51101302f11d08fa1a38412377ddfb8d79",
+        "bc7ca9c1d9630f2a323096237e8079bdc9448670"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "Scoped compatibility fixes; WildFly 54/54 and actual EAP 54/54; operations handed over incomplete.",
+      "active_effort_seconds": null,
+      "recorded_files_changed": [
+        "README.md",
+        "docs/modernization/migration/final-acceptance.md",
+        "docs/modernization/migration/migration-runbook.md",
+        "docs/modernization/migration/migration-state.json",
+        "docs/modernization/migration/theme-browser-gates.md",
+        "docs/modernization/migration/transformation-log.md",
+        "docs/modernization/transformation-report.md"
+      ],
+      "recorded_build_result": "PASS",
+      "recorded_test_result": "NONE \u2014 command SUCCESS/test NO-SOURCE; not behavior validation",
+      "files_evidence": "migration-state.json:mig09_validation",
+      "additional_provisional_application_files": [
+        "src/main/java/com/example/homeoffice/view/ElementsBean.java",
+        "src/main/java/com/example/homeoffice/view/EmployeeBean.java",
+        "src/main/webapp/elements.xhtml",
+        "src/main/webapp/employees.xhtml",
+        "src/main/webapp/WEB-INF/web.xml",
+        "src/main/webapp/WEB-INF/templates/main.xhtml",
+        "src/main/webapp/resources/css/app.css"
+      ],
+      "additional_file_surfaces": [
+        "Dockerfile",
+        "docker-compose.yml"
+      ],
+      "recorded_files_note": "Initial blocked record; provisional/EAP records add later changes.",
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "OPS-01",
+      "first_observed": "2026-10-27T23:02:32.412Z",
+      "last_observed": "2026-10-27T23:25:38.095Z",
+      "observed_span_seconds": 1385.683,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T23:02:32.412Z",
+          "end": "2026-10-27T23:25:38.095Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "bc7ca9c1d9630f2a323096237e8079bdc9448670"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "No-cluster finalized immutable image; local health/replacement and 54/54 diagnostic replay PASS.",
+      "active_effort_seconds": null,
+      "file_surfaces": [
+        "Dockerfile",
+        ".dockerignore",
+        "docker-compose.yml",
+        "operations/eap/",
+        "docs/modernization/operations/production-readiness.md"
+      ],
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "OPS-02",
+      "first_observed": "2026-10-27T23:35:35.882Z",
+      "last_observed": "2026-10-28T00:09:49.466Z",
+      "observed_span_seconds": 2053.584,
+      "work_intervals": [
+        {
+          "start": "2026-10-27T23:35:35.882Z",
+          "end": "2026-10-28T00:09:49.466Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "bc7ca9c1d9630f2a323096237e8079bdc9448670"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "Exact image promotion; local TLS 27/27 and cutover/replacement PASS; not live production.",
+      "active_effort_seconds": null,
+      "file_surfaces": [
+        "operations/local-tls/",
+        "docs/modernization/operations/production-acceptance.md",
+        "docs/modernization/operations/production-readiness.md"
+      ],
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    },
+    {
+      "phase": "OPS-03",
+      "first_observed": "2026-10-28T00:11:52.541Z",
+      "last_observed": "2026-10-28T00:24:11Z",
+      "observed_span_seconds": 738.459,
+      "work_intervals": [
+        {
+          "start": "2026-10-28T00:11:52.541Z",
+          "end": "2026-10-28T00:24:11Z"
+        }
+      ],
+      "confidence": "HIGH for recorded boundaries; not active effort",
+      "associated_commits": [
+        "bc7ca9c1d9630f2a323096237e8079bdc9448670"
+      ],
+      "phase_exclusive_commits": null,
+      "phase_exclusive_commits_note": "UNKNOWN: checkpoint commits batch multiple phases.",
+      "outcome": "Go-live runbook/readiness recorded; rollback BLOCKED; NOT READY - OPERATIONAL BLOCKERS REMAIN.",
+      "active_effort_seconds": null,
+      "file_surfaces": [
+        "docs/modernization/operations/go-live-runbook.md",
+        "docs/modernization/operations/go-live-readiness.md",
+        "docs/modernization/operations/production-readiness.md"
+      ],
+      "final_response_at": "2026-10-28T00:17:15.870Z",
+      "response_span_seconds": 323.329,
+      "files_scope_note": "Recorded lists/surfaces, not additive exclusive per-phase Git counts."
+    }
+  ],
+  "commit_count": 25,
+  "history_counts": {
+    "all_ref_commits": 36,
+    "current_ancestry_commits": 26,
+    "modernization_current_commits": 25,
+    "modernization_all_nonmerge_commits": 34,
+    "october_current_commits": 6,
+    "june_implementation_noncurrent_commits": 9
+  },
+  "commits": [
+    {
+      "sha": "b4bccb1a929b59cbab51cbaab019e919c4f4db40",
+      "timestamp": "2026-06-24T11:34:49.000Z",
+      "subject": "add aws transform skills",
+      "files_changed": 8,
+      "additions": 349,
+      "deletions": 0
+    },
+    {
+      "sha": "dea0743e05b89687a61c261f485751f186f71140",
+      "timestamp": "2026-06-24T11:42:13.000Z",
+      "subject": "add aws transform skills",
+      "files_changed": 17,
+      "additions": 328,
+      "deletions": 28
+    },
+    {
+      "sha": "f02e7219430e50318f839ce783e6c4bc6f251c3d",
+      "timestamp": "2026-06-24T11:43:42.000Z",
+      "subject": "add aws transform skills",
+      "files_changed": 3,
+      "additions": 134,
+      "deletions": 18
+    },
+    {
+      "sha": "796c4dd8db68a3587840a0d011e791100675f17c",
+      "timestamp": "2026-06-24T11:47:05.000Z",
+      "subject": "add aws transform skills",
+      "files_changed": 11,
+      "additions": 8,
+      "deletions": 6
+    },
+    {
+      "sha": "6479c65616a84f4878b493fd642b0901203e4c09",
+      "timestamp": "2026-06-24T11:52:35.000Z",
+      "subject": "add aws transform skills",
+      "files_changed": 3,
+      "additions": 6,
+      "deletions": 4
+    },
+    {
+      "sha": "dd38aa8c58e71dbc6a9ac0b3a2a0ab86855fcebf",
+      "timestamp": "2026-06-24T11:56:52.000Z",
+      "subject": "Step 1: Add EAP/PrimeFaces modernization assessment report. No source code changes \u2014 assessment only. Build status: Success (baseline build verified)",
+      "files_changed": 2,
+      "additions": 212,
+      "deletions": 0
+    },
+    {
+      "sha": "4b31b6e3985cb3639aef720f3c0cd9e4e289cb1c",
+      "timestamp": "2026-06-24T12:20:05.000Z",
+      "subject": "Step 1: Create Phase 1 modernization assessment report. Build status: Success (current project builds clean)",
+      "files_changed": 43,
+      "additions": 854,
+      "deletions": 293
+    },
+    {
+      "sha": "3d19ed054a9df2886900c60cc9166d99824fb434",
+      "timestamp": "2026-06-24T12:39:57.000Z",
+      "subject": "Step 1: Add PrimeFaces 6.2.30 to 7.0 assessment report. No application files modified.",
+      "files_changed": 12,
+      "additions": 208,
+      "deletions": 395
+    },
+    {
+      "sha": "2a616fccd57341921011adfa778c36d41ea3b833",
+      "timestamp": "2026-06-24T12:44:14.000Z",
+      "subject": "Step 1: Add PrimeFaces 7.0 to 8.0 upgrade assessment report with estimate, cost, QA focus, risks, and recommendation.",
+      "files_changed": 1,
+      "additions": 88,
+      "deletions": 0
+    },
+    {
+      "sha": "da57aa87c3a9ad90cea8dbb3b9be31bd9e173332",
+      "timestamp": "2026-06-24T12:49:37.000Z",
+      "subject": "Add PrimeFaces 8.0 to 10.0.0 migration assessment report",
+      "files_changed": 1,
+      "additions": 89,
+      "deletions": 0
+    },
+    {
+      "sha": "fc52a958ff4eb2b9d6e96c1ef06c21248136e30d",
+      "timestamp": "2026-06-24T12:53:14.000Z",
+      "subject": "Step 1: Add PrimeFaces 10.0.0 to 11.0.0 migration assessment report. No application files modified.",
+      "files_changed": 1,
+      "additions": 89,
+      "deletions": 0
+    },
+    {
+      "sha": "bd47eb5ead902269b69ed1c8542185716a490668",
+      "timestamp": "2026-06-24T12:59:48.000Z",
+      "subject": "Step 1: Add PrimeFaces 11.0.0 to 12.0.0 migration assessment report. No build verification needed \u2014 assessment-only output, no application files modified.",
+      "files_changed": 1,
+      "additions": 95,
+      "deletions": 0
+    },
+    {
+      "sha": "f9a09919bd03251982330e528756bbec2a3ac4cc",
+      "timestamp": "2026-06-24T13:08:16.000Z",
+      "subject": "Step 1: Add PrimeFaces 6.2.30 \u2192 7.0 assessment report with cost estimate, QA focus, risks, and recommendation.",
+      "files_changed": 1,
+      "additions": 46,
+      "deletions": 35
+    },
+    {
+      "sha": "970915f97d6af9911392f1de4ba35baf2288193c",
+      "timestamp": "2026-06-24T13:10:30.000Z",
+      "subject": "Step 1: Add PrimeFaces 6.2.30 to 7.0 assessment report. No application files modified.",
+      "files_changed": 1,
+      "additions": 45,
+      "deletions": 62
+    },
+    {
+      "sha": "5d003719e3a5a74c3c30cd4435e70a42bcda9cc5",
+      "timestamp": "2026-06-24T13:16:35.000Z",
+      "subject": "Step 1: Add PrimeFaces 12.0.0 to 13.0.0 assessment report. No application files modified.",
+      "files_changed": 1,
+      "additions": 104,
+      "deletions": 0
+    },
+    {
+      "sha": "f2f904347e7335d3c0a8169b28e341dd849fc3d5",
+      "timestamp": "2026-06-24T13:22:33.000Z",
+      "subject": "Step 1: Add PrimeFaces 13.0.0 to 14.0.0 assessment report. No source code changes - assessment only.",
+      "files_changed": 1,
+      "additions": 107,
+      "deletions": 0
+    },
+    {
+      "sha": "94e67eb52d138edefd37ea643fd7465f4ac614cb",
+      "timestamp": "2026-06-24T13:24:42.000Z",
+      "subject": "Step 1: Add PrimeFaces 13.0.0 to 14.0.0 upgrade assessment report",
+      "files_changed": 1,
+      "additions": 82,
+      "deletions": 57
+    },
+    {
+      "sha": "9b41b10d329aa178d53d9592f714f0a169c6161c",
+      "timestamp": "2026-06-24T13:31:54.000Z",
+      "subject": "Step 1: Add PrimeFaces 14\u219215 Jakarta + EAP 8.1 / Jakarta EE 10 / Java 21 assessment report (08-primefaces-15-jakarta-assessment.md). No source files modified.",
+      "files_changed": 1,
+      "additions": 176,
+      "deletions": 0
+    },
+    {
+      "sha": "056a3bb7f7dc35daddf74d5c710af92b767bdaae",
+      "timestamp": "2026-06-24T13:42:17.000Z",
+      "subject": "add aws transform skills",
+      "files_changed": 1,
+      "additions": 169,
+      "deletions": 0
+    },
+    {
+      "sha": "03d08b94b33af101ca36cd1cf2f004e0ff153309",
+      "timestamp": "2026-10-27T15:39:23.000Z",
+      "subject": "chore: checkpoint worktree changes",
+      "files_changed": 19,
+      "additions": 2132,
+      "deletions": 0
+    },
+    {
+      "sha": "83b075f38cbb6b1d2722a8c96a8241070ada3f4a",
+      "timestamp": "2026-10-27T15:45:49.000Z",
+      "subject": "chore: checkpoint worktree changes",
+      "files_changed": 6,
+      "additions": 754,
+      "deletions": 0
+    },
+    {
+      "sha": "84b34d4fd1b8fedaab6f2c20289802789bcb9cbd",
+      "timestamp": "2026-10-27T16:14:21.000Z",
+      "subject": "chore: checkpoint worktree changes",
+      "files_changed": 2,
+      "additions": 70,
+      "deletions": 24
+    },
+    {
+      "sha": "b254429990b48e414914769217a3fd94daeb46ed",
+      "timestamp": "2026-10-27T18:28:09.000Z",
+      "subject": "chore: checkpoint worktree changes",
+      "files_changed": 17,
+      "additions": 1689,
+      "deletions": 54
+    },
+    {
+      "sha": "de1def51101302f11d08fa1a38412377ddfb8d79",
+      "timestamp": "2026-10-27T22:17:42.000Z",
+      "subject": "chore: checkpoint worktree changes",
+      "files_changed": 37,
+      "additions": 1738,
+      "deletions": 230
+    },
+    {
+      "sha": "bc7ca9c1d9630f2a323096237e8079bdc9448670",
+      "timestamp": "2026-10-28T00:24:11.000Z",
+      "subject": "chore: checkpoint worktree changes",
+      "files_changed": 21,
+      "additions": 1410,
+      "deletions": 22
+    }
+  ],
+  "alternative_branch_commits_excluded": [
+    {
+      "sha": "8987f83e866c921c47ecc58fa7c5a772e988c17c",
+      "timestamp": "2026-06-24T18:30:33.000Z",
+      "subject": "Step 1: Upgrade PrimeFaces from 6.2.30 to 7.0. Updated version catalog, build.gradle description, and libs/README.md references. Build status: Success"
+    },
+    {
+      "sha": "e80a2ca3ea96fe1ac2824fcb4e53e5c5c951fbe6",
+      "timestamp": "2026-06-24T18:35:46.000Z",
+      "subject": "Step 1: Migrate PrimeFaces 7.0 to 8.0 - updated version catalog, UploadedFile import, fileUploadListener\u2192listener, p:calendar\u2192p:datePicker, filterBy/sortBy to field-name strings, removed secure attribute from textEditor. Build status: Success"
+    },
+    {
+      "sha": "a6bb2fddb023942c20428a4d24275e6122708fd3",
+      "timestamp": "2026-06-24T18:43:42.000Z",
+      "subject": "Step 1: Migrate PrimeFaces from 8.0 to 10.0.0. Updated version catalog, libs README, removed obsolete primefaces.UPLOADER context-param from web.xml, replaced p:repeat with ui:repeat in elements.xhtml. Build status: Success"
+    },
+    {
+      "sha": "08cdc381c2d46d11a29ae363181ee8f1f179e6ee",
+      "timestamp": "2026-06-24T18:47:39.000Z",
+      "subject": "Step 1: Upgrade PrimeFaces from 10.0.0 to 11.0.0. Updated gradle/libs.versions.toml and libs/README.md. Build status: Success"
+    },
+    {
+      "sha": "66e5702e182fbc260af0fec426dd79c6e551a220",
+      "timestamp": "2026-06-24T18:55:45.000Z",
+      "subject": "Step 1: Upgrade PrimeFaces from 11.0.0 to 12.0.0 - updated gradle/libs.versions.toml and libs/README.md. Build status: Success"
+    },
+    {
+      "sha": "953ba70edaf077e35ba9efbcaea644418f10df66",
+      "timestamp": "2026-06-24T19:00:49.000Z",
+      "subject": "Step 1: Upgrade PrimeFaces from 12.0.0 to 13.0.0 - updated gradle/libs.versions.toml and libs/README.md. Build status: Success"
+    },
+    {
+      "sha": "0aaee9db9a9a230f2632f8affc9b75bc6a2fe36d",
+      "timestamp": "2026-06-24T19:08:12.000Z",
+      "subject": "Step 1: Upgrade PrimeFaces from 13.0.0 to 14.0.0 - updated version in libs.versions.toml, removed deprecated p:growl (replaced by existing p:messages with autoUpdate), removed growl references from update attributes. Build status: Success"
+    },
+    {
+      "sha": "f2811fc72dc2bef675334c7594470e9b21e02b95",
+      "timestamp": "2026-06-24T19:16:00.000Z",
+      "subject": "Step 1: Migrate PrimeFaces 14.0.0 to 15.0.16 Jakarta, JBoss EAP 7.3 to EAP 8.1, Java 8 to Java 21, javax to jakarta. Build status: Success"
+    },
+    {
+      "sha": "8251130832d86815502e8fdf830e00febd029d51",
+      "timestamp": "2026-06-24T19:48:40.000Z",
+      "subject": "These are manual fixes that AWS Transform missed"
+    },
+    {
+      "sha": "e4669eba63622eee3ff0c332124382e3b4488e5a",
+      "timestamp": "2026-06-25T11:29:01.000Z",
+      "subject": "Atx result staging 20260624 191003 629ec101 (#1)"
+    }
+  ],
+  "change_metrics": {
+    "method": {
+      "commit_scope": "all refs; also current HEAD ancestry separately",
+      "diff": "Git --find-renames=50% --numstat; each event versus first parent, root versus empty tree",
+      "churn": "sum inserted/deleted text lines; binary paths counted but no numeric line churn; renames detected at 50%; unique paths count both rename endpoints, not semantic file identities",
+      "project_exclusions": "exclude tracked .DS_Store; tracked gradle-wrapper.jar retained as legitimate tooling; ignored/untracked generated build and session artifacts excluded by git ls-files --others --exclude-standard",
+      "categories": {
+        "Java": "*.java",
+        "XHTML": "*.xhtml",
+        "docs_evidence_guidance": "*.md, *.json, *.csv, and reports/.gitkeep; includes agent/skill/transformation guidance",
+        "assets": "*.css",
+        "wrapper_binary": "*.jar",
+        "config_build_operations": "all remaining project paths: build/config/launchers/scripts/operations including XML/YAML/TOML/Gradle/sh/py/cli/Dockerfile/Makefile/ignore files"
+      }
+    },
+    "net_baseline_to_head": {
+      "file_events": 116,
+      "unique_paths": 116,
+      "additions": 9878,
+      "deletions": 124,
+      "binary_events": 0,
+      "categories": {
+        "docs_evidence_guidance": {
+          "file_events": 69,
+          "additions": 8921,
+          "deletions": 20,
+          "binary_events": 0,
+          "unique_paths": 69
+        },
+        "config_build_operations": {
+          "file_events": 35,
+          "additions": 869,
+          "deletions": 30,
+          "binary_events": 0,
+          "unique_paths": 35
+        },
+        "Java": {
+          "file_events": 5,
+          "additions": 17,
+          "deletions": 17,
+          "binary_events": 0,
+          "unique_paths": 5
+        },
+        "XHTML": {
+          "file_events": 6,
+          "additions": 66,
+          "deletions": 56,
+          "binary_events": 0,
+          "unique_paths": 6
+        },
+        "assets": {
+          "file_events": 1,
+          "additions": 5,
+          "deletions": 1,
+          "binary_events": 0,
+          "unique_paths": 1
+        }
+      }
+    },
+    "net_change_status": {
+      "A": 94,
+      "M": 22
+    },
+    "net_changed_files": [
+      {
+        "path": ".aws/atx/skills/eap-primefaces-modernization/SKILL.md",
+        "additions": 85,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": ".aws/atx/skills/eap-primefaces-modernization/references/component-coverage.md",
+        "additions": 47,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": ".aws/atx/skills/eap-primefaces-modernization/scripts/validate-assessment.sh",
+        "additions": 23,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": ".aws/atx/skills/eap-primefaces-modernization/scripts/validate-modernized.sh",
+        "additions": 95,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": ".dockerignore",
+        "additions": 6,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": ".github/agents/aws-transform-migrator.agent.md",
+        "additions": 85,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": ".github/instructions/aws-transform-migration.instructions.md",
+        "additions": 401,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": ".github/prompts/aws-transform-migrate.prompt.md",
+        "additions": 35,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "Dockerfile",
+        "additions": 29,
+        "deletions": 5,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "Makefile",
+        "additions": 248,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "README.md",
+        "additions": 60,
+        "deletions": 17,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "SKILL.md",
+        "additions": 0,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/README.md",
+        "additions": 115,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/01-primefaces-7/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/01-primefaces-7/definition/transformation_definition.md",
+        "additions": 19,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/02-primefaces-8/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/02-primefaces-8/definition/transformation_definition.md",
+        "additions": 15,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/03-primefaces-10/config.yaml",
+        "additions": 9,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/03-primefaces-10/definition/transformation_definition.md",
+        "additions": 17,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/04-primefaces-11/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/04-primefaces-11/definition/transformation_definition.md",
+        "additions": 15,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/05-primefaces-12/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/05-primefaces-12/definition/transformation_definition.md",
+        "additions": 15,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/06-primefaces-13/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/06-primefaces-13/definition/transformation_definition.md",
+        "additions": 15,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/07-primefaces-14/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/07-primefaces-14/definition/transformation_definition.md",
+        "additions": 15,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/08-primefaces-15-jakarta/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/08-primefaces-15-jakarta/definition/transformation_definition.md",
+        "additions": 15,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/README.md",
+        "additions": 52,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/config.yaml",
+        "additions": 34,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/definition/document_references/aws-transform-pricing.md",
+        "additions": 25,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/definition/document_references/current-project-facts.md",
+        "additions": 17,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/assessment/definition/transformation_definition.md",
+        "additions": 150,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/01-primefaces-7/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/01-primefaces-7/definition/transformation_definition.md",
+        "additions": 13,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/02-primefaces-8/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/02-primefaces-8/definition/transformation_definition.md",
+        "additions": 13,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/03-primefaces-10/config.yaml",
+        "additions": 9,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/03-primefaces-10/definition/transformation_definition.md",
+        "additions": 16,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/04-primefaces-11/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/04-primefaces-11/definition/transformation_definition.md",
+        "additions": 14,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/05-primefaces-12/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/05-primefaces-12/definition/transformation_definition.md",
+        "additions": 14,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/06-primefaces-13/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/06-primefaces-13/definition/transformation_definition.md",
+        "additions": 14,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/07-primefaces-14/config.yaml",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/07-primefaces-14/definition/transformation_definition.md",
+        "additions": 15,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/08-primefaces-15-jakarta/config.yaml",
+        "additions": 7,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/08-primefaces-15-jakarta/definition/transformation_definition.md",
+        "additions": 29,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/migration/README.md",
+        "additions": 51,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/.gitkeep",
+        "additions": 1,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/01-primefaces-7-assessment.md",
+        "additions": 74,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/02-primefaces-8-assessment.md",
+        "additions": 88,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/03-primefaces-10-assessment.md",
+        "additions": 89,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/04-primefaces-11-assessment.md",
+        "additions": 89,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/05-primefaces-12-assessment.md",
+        "additions": 95,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/06-primefaces-13-assessment.md",
+        "additions": 104,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/07-primefaces-14-assessment.md",
+        "additions": 132,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/08-primefaces-15-jakarta-assessment.md",
+        "additions": 176,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "aws-transform/eap-primefaces-modernization/reports/product-delivery-assessment.md",
+        "additions": 169,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "build.gradle",
+        "additions": 14,
+        "deletions": 6,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docker-compose.production.yml",
+        "additions": 14,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docker-compose.yml",
+        "additions": 8,
+        "deletions": 3,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/api-compatibility.md",
+        "additions": 37,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/assessment-report.md",
+        "additions": 326,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/assessment.json",
+        "additions": 447,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/aws-transform-artifact-inventory.md",
+        "additions": 40,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/dependencies.csv",
+        "additions": 16,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/dependency-compatibility.md",
+        "additions": 32,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/eap-target-analysis.md",
+        "additions": 75,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/effort-estimate.md",
+        "additions": 82,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/findings.csv",
+        "additions": 15,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/findings.md",
+        "additions": 235,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/jakarta-migration.md",
+        "additions": 63,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/manifest.json",
+        "additions": 156,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/migration-readiness.md",
+        "additions": 75,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/primefaces-migration-matrix.md",
+        "additions": 41,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/project-analysis.md",
+        "additions": 56,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/assessment/transformation-plan.md",
+        "additions": 205,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/aws-transform-assessment.md",
+        "additions": 124,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/effort-estimate.md",
+        "additions": 69,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/migration/final-acceptance.md",
+        "additions": 545,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/migration/migration-runbook.md",
+        "additions": 158,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/migration/migration-state.json",
+        "additions": 1362,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/migration/theme-browser-gates.md",
+        "additions": 284,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/migration/transformation-log.md",
+        "additions": 1103,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/operations/go-live-readiness.md",
+        "additions": 97,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/operations/go-live-runbook.md",
+        "additions": 125,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/operations/production-acceptance.md",
+        "additions": 272,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/operations/production-readiness.md",
+        "additions": 214,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/transformation-plan.md",
+        "additions": 90,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "docs/modernization/transformation-report.md",
+        "additions": 178,
+        "deletions": 0,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "gradle/libs.versions.toml",
+        "additions": 3,
+        "deletions": 3,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "libs/README.md",
+        "additions": 5,
+        "deletions": 3,
+        "category": "docs_evidence_guidance",
+        "excluded_artifact": false
+      },
+      {
+        "path": "operations/eap/configure.cli",
+        "additions": 8,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "operations/eap/healthcheck.sh",
+        "additions": 41,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "operations/eap/replace-container.sh",
+        "additions": 12,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "operations/local-tls/compose.yml",
+        "additions": 27,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "operations/local-tls/nginx.conf",
+        "additions": 47,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "operations/local-tls/supervise.py",
+        "additions": 109,
+        "deletions": 0,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "settings.gradle",
+        "additions": 5,
+        "deletions": 1,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/java/com/example/homeoffice/view/DashboardBean.java",
+        "additions": 2,
+        "deletions": 2,
+        "category": "Java",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/java/com/example/homeoffice/view/ElementsBean.java",
+        "additions": 6,
+        "deletions": 6,
+        "category": "Java",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/java/com/example/homeoffice/view/EmployeeBean.java",
+        "additions": 5,
+        "deletions": 5,
+        "category": "Java",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/java/com/example/homeoffice/view/HomeBean.java",
+        "additions": 2,
+        "deletions": 2,
+        "category": "Java",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/java/com/example/homeoffice/view/ReportsBean.java",
+        "additions": 2,
+        "deletions": 2,
+        "category": "Java",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/webapp/WEB-INF/beans.xml",
+        "additions": 3,
+        "deletions": 3,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/webapp/WEB-INF/templates/main.xhtml",
+        "additions": 11,
+        "deletions": 8,
+        "category": "XHTML",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/webapp/WEB-INF/web.xml",
+        "additions": 14,
+        "deletions": 9,
+        "category": "config_build_operations",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/webapp/dashboard.xhtml",
+        "additions": 1,
+        "deletions": 1,
+        "category": "XHTML",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/webapp/elements.xhtml",
+        "additions": 23,
+        "deletions": 20,
+        "category": "XHTML",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/webapp/employees.xhtml",
+        "additions": 27,
+        "deletions": 23,
+        "category": "XHTML",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/webapp/home.xhtml",
+        "additions": 3,
+        "deletions": 3,
+        "category": "XHTML",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/webapp/reports.xhtml",
+        "additions": 1,
+        "deletions": 1,
+        "category": "XHTML",
+        "excluded_artifact": false
+      },
+      {
+        "path": "src/main/webapp/resources/css/app.css",
+        "additions": 5,
+        "deletions": 1,
+        "category": "assets",
+        "excluded_artifact": false
+      }
+    ],
+    "net_october": {
+      "file_events": 64,
+      "unique_paths": 64,
+      "additions": 7597,
+      "deletions": 134,
+      "binary_events": 0,
+      "categories": {
+        "config_build_operations": {
+          "file_events": 16,
+          "additions": 417,
+          "deletions": 34,
+          "binary_events": 0,
+          "unique_paths": 16
+        },
+        "docs_evidence_guidance": {
+          "file_events": 36,
+          "additions": 7092,
+          "deletions": 26,
+          "binary_events": 0,
+          "unique_paths": 36
+        },
+        "Java": {
+          "file_events": 5,
+          "additions": 17,
+          "deletions": 17,
+          "binary_events": 0,
+          "unique_paths": 5
+        },
+        "XHTML": {
+          "file_events": 6,
+          "additions": 66,
+          "deletions": 56,
+          "binary_events": 0,
+          "unique_paths": 6
+        },
+        "assets": {
+          "file_events": 1,
+          "additions": 5,
+          "deletions": 1,
+          "binary_events": 0,
+          "unique_paths": 1
+        }
+      }
+    },
+    "cumulative": {
+      "current_modernization": {
+        "file_events": 205,
+        "unique_paths": 128,
+        "additions": 10982,
+        "deletions": 1228,
+        "binary_events": 0,
+        "categories": {
+          "docs_evidence_guidance": {
+            "file_events": 138,
+            "additions": 9922,
+            "deletions": 1021,
+            "binary_events": 0,
+            "unique_paths": 79
+          },
+          "config_build_operations": {
+            "file_events": 51,
+            "additions": 971,
+            "deletions": 132,
+            "binary_events": 0,
+            "unique_paths": 37
+          },
+          "Java": {
+            "file_events": 6,
+            "additions": 17,
+            "deletions": 17,
+            "binary_events": 0,
+            "unique_paths": 5
+          },
+          "XHTML": {
+            "file_events": 9,
+            "additions": 67,
+            "deletions": 57,
+            "binary_events": 0,
+            "unique_paths": 6
+          },
+          "assets": {
+            "file_events": 1,
+            "additions": 5,
+            "deletions": 1,
+            "binary_events": 0,
+            "unique_paths": 1
+          }
+        }
+      },
+      "october_only": {
+        "file_events": 102,
+        "unique_paths": 64,
+        "additions": 7793,
+        "deletions": 330,
+        "binary_events": 0,
+        "categories": {
+          "docs_evidence_guidance": {
+            "file_events": 65,
+            "additions": 7280,
+            "deletions": 214,
+            "binary_events": 0,
+            "unique_paths": 36
+          },
+          "config_build_operations": {
+            "file_events": 21,
+            "additions": 424,
+            "deletions": 41,
+            "binary_events": 0,
+            "unique_paths": 16
+          },
+          "Java": {
+            "file_events": 6,
+            "additions": 17,
+            "deletions": 17,
+            "binary_events": 0,
+            "unique_paths": 5
+          },
+          "XHTML": {
+            "file_events": 9,
+            "additions": 67,
+            "deletions": 57,
+            "binary_events": 0,
+            "unique_paths": 6
+          },
+          "assets": {
+            "file_events": 1,
+            "additions": 5,
+            "deletions": 1,
+            "binary_events": 0,
+            "unique_paths": 1
+          }
+        }
+      },
+      "alternate_june_implementation_only": {
+        "file_events": 45,
+        "unique_paths": 21,
+        "additions": 132,
+        "deletions": 119,
+        "binary_events": 0,
+        "categories": {
+          "config_build_operations": {
+            "file_events": 19,
+            "additions": 49,
+            "deletions": 41,
+            "binary_events": 0,
+            "unique_paths": 7
+          },
+          "docs_evidence_guidance": {
+            "file_events": 9,
+            "additions": 29,
+            "deletions": 25,
+            "binary_events": 0,
+            "unique_paths": 3
+          },
+          "Java": {
+            "file_events": 6,
+            "additions": 13,
+            "deletions": 13,
+            "binary_events": 0,
+            "unique_paths": 5
+          },
+          "XHTML": {
+            "file_events": 11,
+            "additions": 41,
+            "deletions": 40,
+            "binary_events": 0,
+            "unique_paths": 6
+          }
+        }
+      },
+      "all_ref_modernization_nonmerge": {
+        "file_events": 250,
+        "unique_paths": 129,
+        "additions": 11114,
+        "deletions": 1347,
+        "binary_events": 0,
+        "categories": {
+          "docs_evidence_guidance": {
+            "file_events": 147,
+            "additions": 9951,
+            "deletions": 1046,
+            "binary_events": 0,
+            "unique_paths": 79
+          },
+          "config_build_operations": {
+            "file_events": 70,
+            "additions": 1020,
+            "deletions": 173,
+            "binary_events": 0,
+            "unique_paths": 38
+          },
+          "Java": {
+            "file_events": 12,
+            "additions": 30,
+            "deletions": 30,
+            "binary_events": 0,
+            "unique_paths": 5
+          },
+          "XHTML": {
+            "file_events": 20,
+            "additions": 108,
+            "deletions": 97,
+            "binary_events": 0,
+            "unique_paths": 6
+          },
+          "assets": {
+            "file_events": 1,
+            "additions": 5,
+            "deletions": 1,
+            "binary_events": 0,
+            "unique_paths": 1
+          }
+        }
+      }
+    },
+    "inventory": {
+      "baseline": {
+        "tracked_raw_files": 34,
+        "project_files": 34,
+        "categories": {
+          "config_build_operations": 13,
+          "docs_evidence_guidance": 2,
+          "wrapper_binary": 1,
+          "Java": 11,
+          "XHTML": 6,
+          "assets": 1
+        },
+        "excluded_paths": []
+      },
+      "pre_october_fork": {
+        "tracked_raw_files": 90,
+        "project_files": 89,
+        "categories": {
+          "docs_evidence_guidance": 37,
+          "config_build_operations": 33,
+          "wrapper_binary": 1,
+          "Java": 11,
+          "XHTML": 6,
+          "assets": 1
+        },
+        "excluded_paths": [
+          ".DS_Store"
+        ]
+      },
+      "current": {
+        "tracked_raw_files": 129,
+        "project_files": 128,
+        "categories": {
+          "docs_evidence_guidance": 69,
+          "config_build_operations": 40,
+          "wrapper_binary": 1,
+          "Java": 11,
+          "XHTML": 6,
+          "assets": 1
+        },
+        "excluded_paths": [
+          ".DS_Store"
+        ]
+      },
+      "alternate_june_result": {
+        "tracked_raw_files": 90,
+        "project_files": 89,
+        "categories": {
+          "docs_evidence_guidance": 36,
+          "config_build_operations": 34,
+          "wrapper_binary": 1,
+          "Java": 11,
+          "XHTML": 6,
+          "assets": 1
+        },
+        "excluded_paths": [
+          ".DS_Store"
+        ]
+      }
+    },
+    "report_files_excluded": true
+  },
+  "validation_metrics": {
+    "runs": [
+      {
+        "label": "WildFly provisional",
+        "source": "session/files/mig09-provisional-browser-results.json",
+        "sha256": "3b781d12442de5e26f4bee790c82c921ace9b158bd23435081da9ab518562a9a",
+        "core": true,
+        "executed": 54,
+        "passed": 54,
+        "engines": {
+          "chromium": {
+            "version": "156.0.8078.4",
+            "executed": 18,
+            "passed": 18
+          },
+          "firefox": {
+            "version": "157.0",
+            "executed": 18,
+            "passed": 18
+          },
+          "webkit": {
+            "version": "27.2",
+            "executed": 18,
+            "passed": 18
+          }
+        }
+      },
+      {
+        "label": "Actual EAP",
+        "source": "session/files/mig09-eap-pinned/mig09-provisional-browser-results.json",
+        "sha256": "73d0e3d562cc2c31c859c6f1073574988cd5214f8ee6f18a439e8032a292b2ff",
+        "core": true,
+        "executed": 54,
+        "passed": 54,
+        "engines": {
+          "chromium": {
+            "version": "156.0.8078.4",
+            "executed": 18,
+            "passed": 18
+          },
+          "firefox": {
+            "version": "157.0",
+            "executed": 18,
+            "passed": 18
+          },
+          "webkit": {
+            "version": "27.2",
+            "executed": 18,
+            "passed": 18
+          }
+        }
+      },
+      {
+        "label": "OPS-02 local HTTPS",
+        "source": "session/files/ops02/local-smoke-results.json",
+        "sha256": "58c09fe7e5a9e121f7e5587fe504368237e9a67afe90303c1ab270745c78a0da",
+        "core": true,
+        "executed": 27,
+        "passed": 27,
+        "engines": {
+          "chromium": {
+            "version": "156.0.8078.4",
+            "executed": 9,
+            "passed": 9
+          },
+          "firefox": {
+            "version": "157.0",
+            "executed": 9,
+            "passed": 9
+          },
+          "webkit": {
+            "version": "27.2",
+            "executed": 9,
+            "passed": 9
+          }
+        }
+      },
+      {
+        "label": "OPS-01 standalone diagnostic HTTP replay",
+        "source": "session/files/ops01/mig09-provisional-browser-results.json",
+        "sha256": "b8fde3b78f5cda6a9d735195b8b790411052e0fdd1361b7abaa7462a238400d1",
+        "core": false,
+        "executed": 54,
+        "passed": 54,
+        "engines": {
+          "chromium": {
+            "version": "156.0.8078.4",
+            "executed": 18,
+            "passed": 18
+          },
+          "firefox": {
+            "version": "157.0",
+            "executed": 18,
+            "passed": 18
+          },
+          "webkit": {
+            "version": "27.2",
+            "executed": 18,
+            "passed": 18
+          }
+        }
+      }
+    ],
+    "core_passed": 135,
+    "core_executed": 135,
+    "including_ops01_passed": 189,
+    "including_ops01_executed": 189,
+    "selected_final_run_pass_rate_percent": 100,
+    "all_attempt_pass_rate_percent": null,
+    "counts_are_grouped_check_instances_not_unique_features": true,
+    "maintained_repository_behavioral_tests": 0,
+    "safari_product_tested": false,
+    "formal_accessibility_accepted": false,
+    "mobile_responsive_accepted": false,
+    "previous_production_rollback_rehearsed": false,
+    "live_production_accepted": false,
+    "application_authentication_logout": "No native integration; fresh sessions are not authentication/logout acceptance."
+  },
+  "technology_boundary_counts": {
+    "primefaces": 8,
+    "java": 2,
+    "platform": 1,
+    "actual_runtime_validation_environment": 1,
+    "theme": 2,
+    "total": 14
+  },
+  "measured_tool_invocations": [
+    {
+      "label": "EAP browser harness with identity comparison",
+      "start": "2026-10-27T22:38:50.280Z",
+      "end": "2026-10-27T22:40:28.571Z",
+      "invocation_elapsed_seconds": 98.291,
+      "confidence": "HIGH for tool invocation wall interval, not CPU/human effort"
+    },
+    {
+      "label": "OPS-01 cached final image build",
+      "start": "2026-10-27T23:14:46.607Z",
+      "end": "2026-10-27T23:14:54.663Z",
+      "invocation_elapsed_seconds": 8.056,
+      "confidence": "HIGH for tool invocation wall interval, not CPU/human effort"
+    },
+    {
+      "label": "OPS-01 browser harness with copy",
+      "start": "2026-10-27T23:15:56.331Z",
+      "end": "2026-10-27T23:17:40.857Z",
+      "invocation_elapsed_seconds": 104.526,
+      "confidence": "HIGH for tool invocation wall interval, not CPU/human effort"
+    },
+    {
+      "label": "OPS-02 tag/push command",
+      "start": "2026-10-27T23:43:31.166Z",
+      "end": "2026-10-27T23:43:39.240Z",
+      "invocation_elapsed_seconds": 8.074,
+      "confidence": "HIGH for tool invocation wall interval, not CPU/human effort"
+    },
+    {
+      "label": "OPS-02 focused HTTPS smoke",
+      "start": "2026-10-27T23:55:38.769Z",
+      "end": "2026-10-27T23:56:23.959Z",
+      "invocation_elapsed_seconds": 45.19,
+      "confidence": "HIGH for tool invocation wall interval, not CPU/human effort"
+    },
+    {
+      "label": "OPS-02 final local lifecycle probe",
+      "start": "2026-10-28T00:05:49.824Z",
+      "end": "2026-10-28T00:07:43.077Z",
+      "invocation_elapsed_seconds": 113.253,
+      "confidence": "HIGH for tool invocation wall interval, not CPU/human effort"
+    }
+  ],
+  "additional_measured_intervals": {
+    "eap_assembly_step_seconds": 383.4,
+    "ops02_cutover_seconds": 59.6,
+    "cutover_nested_within_lifecycle_invocation": true,
+    "eap_build_step_is_not_entire_docker_build": true
+  },
+  "effort_split": {
+    "human_active_seconds": null,
+    "exclusive_automation_seconds": null,
+    "total_agent_execution_seconds": null,
+    "classification": "Not measurable from repository evidence",
+    "confidence": "LOW"
+  },
+  "derived_metrics": {
+    "named_migration_phases": 10,
+    "implementation_phases": 8,
+    "operational_stages_documented": 3,
+    "timeline_buckets": 14,
+    "mixed_scope_active_hours_per_named_mig_phase": 1.1184486944444445,
+    "commits_per_estimated_active_hour": 2.2352388736452498,
+    "interpretive_confidence": "LOW",
+    "note": "Ratios include assessment/OPS and checkpoint batching; not measured per-phase labor or savings."
+  },
+  "confidence": {
+    "calendar_recorded_boundaries": "HIGH",
+    "observed_phase_boundaries": "HIGH",
+    "estimated_active_time": "MEDIUM",
+    "historical_commit_only_active_time": "LOW",
+    "git_change_counts": "HIGH",
+    "selected_validation_counts": "HIGH",
+    "selected_measured_tool_intervals": "HIGH",
+    "human_automation_split": "LOW"
+  },
+  "limitations": [
+    "Calendar elapsed time includes long inactivity; not active engineering time.",
+    "Sessions infer mixed activity and short waits, not human labor or CPU time.",
+    "Commit batching obscures phase-specific work; unknown times are null, not zero.",
+    "Selected final-run 100% pass rate excludes earlier diagnostic failures and reruns.",
+    "Local HTTPS/replacement/cutover does not establish real production acceptance.",
+    "Retained generated session evidence is not all committed and must be preserved separately."
+  ]
+}
